@@ -19,7 +19,7 @@ def fetch_stocks() -> dict:
 
 
 def fetch_periods_intervals() -> dict:
-    """# Create function to fetch periods and intervals
+    """ Create function to fetch periods and intervals
     """
     periods = {  # Create dictionary for periods and intervals
         "1d": ["1m", "2m", "5m", "15m", "30m", "60m", "90m"],
