@@ -1,19 +1,11 @@
-# Web Scraping and Trade Market Analysis
+# Web scraping and trade market analysis
 
-## Usage
-### Install library
-```bash
-pip install -r requiremets.txt
-```
+## About
+By analyzing fundamental factors or quantitative factors to predict the rise and fall of stock prices, investors will make decisions to buy or sell stocks to seek profits. However, the stock market always has unexpected factors that do not align with users' subjective intentions, so predicting market trends is a crucial task that has been attracting the attention of investors, economists, and scientists.
 
-### Download Driver
-- Chorme: https://developer.chrome.com/docs/chromedriver/downloads/
-- Edge: https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/
+In this project, please help stock investors build a model to predict the prices of some popular stocks in the current Vietnamese market.
 
-Depending on the web browser you use to download the corresponding driver
-
-###
-We will collect data at [cafef.vn](https://s.cafef.vn/lich-su-giao-dich-vnindex-1.chn)
-```bash
-py Multi-threading.py
-```
+## Goal
+- [ ] [Web scraping](/web_scraping/README.md) (source: cafef.vn)
+- [ ] 
+- [ ] Analysis and Predict
