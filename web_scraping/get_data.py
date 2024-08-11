@@ -13,12 +13,7 @@ def read_doc():
     pass
 
 
-def list_to_csv(lst, stock_code) -> dict:
-    dic = {"date": [], "closing_price": [], "adjusting_price": [], "rate_change": [],
-           "order_matching_volumn": [], "order_matching_value": [],
-           "block_trade_volume": [], "block_trade_value": [],
-           "open_price": [], "max_price": [], "min_price": []}
-
+def list_to_csv(lst, dic, stock_code):    
     for i in range(0, len(lst), 11):
         dic['date'].append(lst[i])
         dic['closing_price'].append(lst[i+1])
@@ -31,7 +26,7 @@ def list_to_csv(lst, stock_code) -> dict:
         dic['open_price'].append(lst[i+8])
         dic['max_price'].append(lst[i+9])
         dic['min_price'].append(lst[i+10])
-    pd.DataFrame(dic).to_csv(f"./data/{stock_code}.csv")
+    pd.DataFrame(dic).to_csv(f"./data/raw/{stock_code}.csv")
 
 
 def get_Data(browser, stock_code, index) -> list:
@@ -40,28 +35,40 @@ def get_Data(browser, stock_code, index) -> list:
     data = []
     browser.get(
         f"https://s.cafef.vn/lich-su-giao-dich-{stock_code}-{index}.chn")
-    # sleep(2)
-    while True:
+
+    # search_bar = browser.find_element(By.ID, 'date-inp-disclosure')
+    # browser.execute_script("arguments[0].value = '11/7/2021 - 12/7/2022'", search_bar)
+    # browser.find_element(By.ID, 'owner-find').click()
+    sleep(1)
+    
+    class_name = ""
+    while "enable" not in class_name:    
         try:
             elements = browser.find_elements(
                 By.CSS_SELECTOR, ".render-table-owner td")
             data += [element.text for element in elements]
-            nextpage = browser.find_element(
-                By.XPATH, "/html/body/form/div[3]/div[2]/div[1]/div[3]/div/div[3]/div[3]").click()
+            next_page = browser.find_element(By.ID, "paging-right")
+            next_page.click()       
+            class_name = next_page.get_attribute("class")     
             sleep(1)
-            print(len(data))
-        except RuntimeError:
-            print("crawl end")
+        except:
+            print("Crawling Completely")
             break
     browser.close()
     return data
 
 
 if __name__ == '__main__':
+    dic = {"date": [], "closing_price": [], "adjusting_price": [], "rate_change": [],
+           "order_matching_volumn": [], "order_matching_value": [],
+           "block_trade_volume": [], "block_trade_value": [],
+           "open_price": [], "max_price": [], "min_price": []}
+    
     options = Options()
     options.headless = False
     options.add_argument("--window-size=1920,1080")
     service = Service(executable_path='./chromedriver.exe')
     browser = webdriver.Chrome(service=service, options=options)
+
     lst = get_Data(browser=browser, stock_code='fpt', index=1)
-    dic = list_to_csv(lst=lst, stock_code='fpt')
+    list_to_csv(lst=lst, dic=dic, stock_code='fpt')

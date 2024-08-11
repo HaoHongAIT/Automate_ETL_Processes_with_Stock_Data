@@ -6,25 +6,22 @@ import yfinance as yf
 from statsmodels.tsa.ar_model import AutoReg
 
 
-# Create function to fetch stock name and id
-def fetch_stocks():
+def fetch_stocks() -> dict:
+    """Create function to fetch stock name and id
+    """
     # Load the data
     df = pd.read_csv(Path.cwd() / "data" / "equity_issuers.csv")
-
     # Filter the data
     df = df[["Security Code", "Issuer Name"]]
-
     # Create a dictionary
     stock_dict = dict(zip(df["Security Code"], df["Issuer Name"]))
-
-    # Return the dictionary
     return stock_dict
 
 
-# Create function to fetch periods and intervals
-def fetch_periods_intervals():
-    # Create dictionary for periods and intervals
-    periods = {
+def fetch_periods_intervals() -> dict:
+    """# Create function to fetch periods and intervals
+    """
+    periods = {  # Create dictionary for periods and intervals
         "1d": ["1m", "2m", "5m", "15m", "30m", "60m", "90m"],
         "5d": ["1m", "2m", "5m", "15m", "30m", "60m", "90m"],
         "1mo": ["30m", "60m", "90m", "1d"],
@@ -36,13 +33,12 @@ def fetch_periods_intervals():
         "10y": ["1d", "5d", "1wk", "1mo"],
         "max": ["1d", "5d", "1wk", "1mo"],
     }
-
-    # Return the dictionary
     return periods
 
 
-# Function to fetch the stock info
-def fetch_stock_info(stock_ticker):
+def fetch_stock_info(stock_ticker) -> dict:
+    """Function to fetch the stock info
+    """
     # Pull the data for the first security
     stock_data = yf.Ticker(stock_ticker)
 
@@ -132,8 +128,9 @@ def fetch_stock_info(stock_ticker):
     return stock_data_info
 
 
-# Function to fetch the stock history
 def fetch_stock_history(stock_ticker, period, interval):
+    """Function to fetch the stock history
+    """
     # Pull the data for the first security
     stock_data = yf.Ticker(stock_ticker)
 
@@ -142,12 +139,12 @@ def fetch_stock_history(stock_ticker, period, interval):
         ["Open", "High", "Low", "Close"]
     ]
 
-    # Return the stock data
     return stock_data_history
 
 
-# Function to generate the stock prediction
 def generate_stock_prediction(stock_ticker):
+    """Function to generate the stock prediction
+    """
     # Try to generate the predictions
     try:
         # Pull the data for the first security
@@ -173,19 +170,16 @@ def generate_stock_prediction(stock_ticker):
 
         # Define training model
         model = AutoReg(train_df["Close"], 250).fit(cov_type="HC0")
-
         # Predict data for test data
         predictions = model.predict(
             start=test_df.index[0], end=test_df.index[-1], dynamic=True
         )
-
         # Predict 90 days into the future
         forecast = model.predict(
             start=test_df.index[0],
             end=test_df.index[-1] + dt.timedelta(days=90),
             dynamic=True,
         )
-
         # Return the required data
         return train_df, test_df, forecast, predictions
 

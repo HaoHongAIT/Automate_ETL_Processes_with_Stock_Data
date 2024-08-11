@@ -9,7 +9,7 @@ st.set_page_config(
 )
 
 
-#####Sidebar Start#####
+##### Sidebar Start#####
 
 # Add a sidebar
 st.sidebar.markdown("## **User Input Features**")
@@ -23,7 +23,8 @@ stock = st.sidebar.selectbox("Choose a stock", list(stock_dict.keys()))
 
 # Add a selector for stock exchange
 st.sidebar.markdown("### **Select stock exchange**")
-stock_exchange = st.sidebar.radio("Choose a stock exchange", ("BSE", "NSE"), index=0)
+stock_exchange = st.sidebar.radio(
+    "Choose a stock exchange", ("BSE", "NSE"), index=0)
 
 # Build the stock ticker
 stock_ticker = f"{stock_dict[stock]}.{'BO' if stock_exchange == 'BSE' else 'NS'}"
@@ -45,25 +46,26 @@ period = st.sidebar.selectbox("Choose a period", list(periods.keys()))
 st.sidebar.markdown("### **Select interval**")
 interval = st.sidebar.selectbox("Choose an interval", periods[period])
 
-#####Sidebar End#####
+##### Sidebar End#####
 
 
-#####Title#####
+##### Title#####
 
 # Add title to the app
 st.markdown("# **Stock Price Prediction**")
 
 # Add a subtitle to the app
-st.markdown("##### **Enhance Investment Decisions through Data-Driven Forecasting**")
+st.markdown(
+    "##### **Enhance Investment Decisions through Data-Driven Forecasting**")
 
-#####Title End#####
+##### Title End#####
 
 
 # Fetch the stock historical data
 stock_data = fetch_stock_history(stock_ticker, period, interval)
 
 
-#####Historical Data Graph#####
+##### Historical Data Graph#####
 
 # Add a title to the historical data graph
 st.markdown("## **Historical Data**")
@@ -87,13 +89,14 @@ fig.update_layout(xaxis_rangeslider_visible=False)
 # Use the native streamlit theme.
 st.plotly_chart(fig, use_container_width=True)
 
-#####Historical Data Graph End#####
+##### Historical Data Graph End#####
 
 
-#####Stock Prediction Graph#####
+##### Stock Prediction Graph#####
 
 # Unpack the data
-train_df, test_df, forecast, predictions = generate_stock_prediction(stock_ticker)
+train_df, test_df, forecast, predictions = generate_stock_prediction(
+    stock_ticker)
 
 # Check if the data is not None
 if train_df is not None and (forecast >= 0).all() and (predictions >= 0).all():
@@ -144,8 +147,7 @@ if train_df is not None and (forecast >= 0).all() and (predictions >= 0).all():
 else:
     # Add a title to the stock prediction graph
     st.markdown("## **Stock Prediction**")
-
     # Add a message to the stock prediction graph
     st.markdown("### **No data available for the selected stock**")
 
-#####Stock Prediction Graph End#####
+##### Stock Prediction Graph End#####

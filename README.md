@@ -6,6 +6,6 @@ By analyzing fundamental factors or quantitative factors to predict the rise and
 In this project, please help stock investors build a model to predict the prices of some popular stocks in the current Vietnamese market.
 
 ## Goal
-- [ ] [Web scraping](/web_scraping/README.md) (source: cafef.vn)
+- [x] [Web scraping](/web_scraping/README.md) (source: cafef.vn)
 - [ ] 
 - [ ] Analysis and Predict
