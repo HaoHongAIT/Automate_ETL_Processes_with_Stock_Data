@@ -19,13 +19,13 @@ def list_to_csv(lst, dic, stock_code):
         dic['closing_price'].append(lst[i+1])
         dic['adjusting_price'].append(lst[i+2])
         dic['rate_change'].append(lst[i+3])
-        dic['order_matching_volumn'].append(lst[i+4])
+        dic['order_matching_volume'].append(lst[i+4])
         dic['order_matching_value'].append(lst[i+5])
         dic['block_trade_volume'].append(lst[i+6])
         dic['block_trade_value'].append(lst[i+7])
         dic['open_price'].append(lst[i+8])
-        dic['max_price'].append(lst[i+9])
-        dic['min_price'].append(lst[i+10])
+        dic['high'].append(lst[i+9])
+        dic['low'].append(lst[i+10])
     pd.DataFrame(dic).to_csv(f"./data/raw/{stock_code}.csv")
 
 
@@ -36,9 +36,9 @@ def get_Data(browser, stock_code, index) -> list:
     browser.get(
         f"https://s.cafef.vn/lich-su-giao-dich-{stock_code}-{index}.chn")
 
-    # search_bar = browser.find_element(By.ID, 'date-inp-disclosure')
-    # browser.execute_script("arguments[0].value = '11/7/2021 - 12/7/2022'", search_bar)
-    # browser.find_element(By.ID, 'owner-find').click()
+    search_bar = browser.find_element(By.ID, 'date-inp-disclosure')
+    browser.execute_script("arguments[0].value = '1/7/2024 - 13/8/2024'", search_bar)
+    browser.find_element(By.ID, 'owner-find').click()
     sleep(1)
     
     class_name = ""
