@@ -1,17 +1,30 @@
 ## About
 
-## How the market work?
-Nhu cầu trong kinh tế học được hiểu là nhu cầu tiêu dùng (sở thích tiêu dùng). Trong kinh tế học, nhu cầu nếu không có khả năng tài chính để đáp ứng cho sở thích 
-tiêu dùng thì không thể gọi là nhu cầu. 
-- => Thị trường (hàng hóa, sản phẩm,...) luôn vận động theo nhu cầu => các nhà
-phân phối luôn tìm cách tạo ra những sản phẩm có giá trị phù hợp với sở thích của 
-người dùng => người dùng cần mua những sản phẩm đang cần, thích thì đến 
-nơi phân phối sản phẩm để thực hiện giao dịch => từ đây có một khái niệm gọi ,lli2mà mua bán.
 
 
+|   Feature     | Description |
+| :-----------: | ----------- |
+|   `Ticker`    | Mã chứng khoán định danh duy nhất cho cổ phiếu. |
+|   `Time`      | Thời gian giao dịch. |
+|   `Open`      | **Giá mở cửa** trong của phiên giao dịch. |
+|   `High`      | Giá cao nhất mà cổ phiếu đã giao dịch trong phiên giao dịch |
+|   `Low`       | Giá thấp nhất mà cổ phiếu đã giao dịch của phiên giao dịch |
+|   `Close`     | **Giá đóng cửa** là mức giá cuối cùng mà cổ phiếu được giao dịch trong khung thời gian |
+|   `Volume`    | Tổng (hay khối) lượng giao dịch |
+|   `Open Interest` | Số lượng hợp đồng tương lai (nếu có) mà người mua và người bán đã thỏa thuận và chưa giải ngân. |
 
-#  **Stockastic**
-### **Predicting Stocks with ML**
+Ngoài ra, các chỉ số khác cũng có thể được tính thông qua các `Feature` trên:
+- Moving Average (MA)
+- Simple Moving Average (SMA)
+- Exponential Moving Average (EMA)
 
-**Stockastic is an ML-powered stock price prediction app built with Python and Streamlit. It utilizes machine learning models to forecast stock prices and help investors make data-driven decisions.**
+Những chỉ số trên là các chỉ báo kỹ thuật phổ biến được sử dụng để xác định `Trend` (xu hướng) và dự đoán giá trong tương lai. Mỗi loại chỉ số có nhược điểm và ưu điểm riêng, và sự lựa chọn giữa chúng thường phụ thuộc vào mục tiêu cụ thể và khả năng điều chỉnh độ nhạy của chỉ số.
+
+|   Chỉ số                      | Ý nghĩa                                   |
+| :---------------------------: | ----------------------------------------- |
+|   Simple Moving Average       | Phản ánh biến động một cách tổng quát     |
+|   Moving Average              | Phản ảnh biến động của một tập giá trị    | 
+|   Exponential Moving Average  | Phản ánh biến động gần đây một cách nhanh chóng hơn. |
+
+
 

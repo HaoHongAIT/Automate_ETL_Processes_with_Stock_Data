@@ -174,13 +174,12 @@ def generate_stock_prediction(stock_ticker):
         predictions = model.predict(
             start=test_df.index[0], end=test_df.index[-1], dynamic=True
         )
-        # Predict 90 days into the future
-        forecast = model.predict(
+        
+        forecast = model.predict(# Predict 90 days into the future
             start=test_df.index[0],
             end=test_df.index[-1] + dt.timedelta(days=90),
             dynamic=True,
         )
-        # Return the required data
         return train_df, test_df, forecast, predictions
 
     # If error occurs

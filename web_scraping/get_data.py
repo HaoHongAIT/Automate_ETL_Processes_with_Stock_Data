@@ -13,7 +13,7 @@ def read_doc():
     pass
 
 
-def list_to_csv(lst, dic, stock_code):    
+def list_to_csv(lst, dic, ticker):    
     for i in range(0, len(lst), 11):
         dic['date'].append(lst[i])
         dic['closing_price'].append(lst[i+1])
@@ -24,17 +24,23 @@ def list_to_csv(lst, dic, stock_code):
         dic['block_trade_volume'].append(lst[i+6])
         dic['block_trade_value'].append(lst[i+7])
         dic['open_price'].append(lst[i+8])
+<<<<<<< Updated upstream
         dic['high'].append(lst[i+9])
         dic['low'].append(lst[i+10])
     pd.DataFrame(dic).to_csv(f"./data/raw/{stock_code}.csv")
+=======
+        dic['max_price'].append(lst[i+9])
+        dic['min_price'].append(lst[i+10])
+    pd.DataFrame(dic).to_csv(f"./data/raw/{ticker}.csv")
+>>>>>>> Stashed changes
 
 
-def get_Data(browser, stock_code, index) -> list:
+def get_Data(browser, ticker, index) -> list:
     """get data from table at url
     """
     data = []
     browser.get(
-        f"https://s.cafef.vn/lich-su-giao-dich-{stock_code}-{index}.chn")
+        f"https://s.cafef.vn/lich-su-giao-dich-{ticker}-{index}.chn")
 
     search_bar = browser.find_element(By.ID, 'date-inp-disclosure')
     browser.execute_script("arguments[0].value = '1/7/2024 - 13/8/2024'", search_bar)
@@ -70,5 +76,5 @@ if __name__ == '__main__':
     service = Service(executable_path='./chromedriver.exe')
     browser = webdriver.Chrome(service=service, options=options)
 
-    lst = get_Data(browser=browser, stock_code='fpt', index=1)
-    list_to_csv(lst=lst, dic=dic, stock_code='fpt')
+    lst = get_Data(browser=browser, ticker='fpt', index=1)
+    list_to_csv(lst=lst, dic=dic, ticker='fpt')
