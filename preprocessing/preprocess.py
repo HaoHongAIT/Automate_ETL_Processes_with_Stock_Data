@@ -1,9 +1,9 @@
 import pandas as pd
 import re
 
-df = pd.read_csv(r".\data\raw\fpt.csv")
-def preprocess(df):
 
+def preprocess(df):
+    df = pd.read_csv(r".\data\raw\fpt.csv")
     # Convert the 'date' column to datetime format (dd/mm/yyyy)
     df['date'] = pd.to_datetime(df['date'], format='%d/%m/%Y')
     # Replace '--' with 'N/A' in the 'adjusting_price' column

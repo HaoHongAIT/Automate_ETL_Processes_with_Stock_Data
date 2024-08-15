@@ -1,3 +1,5 @@
+
+
 from time import sleep
 from selenium.webdriver.common.by import By
 from selenium import webdriver
@@ -7,6 +9,7 @@ from time import sleep
 from queue import Queue
 import pandas as pd
 import threading
+from preprocessing.preprocess import preprocess
 
 
 def read_doc():
@@ -24,15 +27,9 @@ def list_to_csv(lst, dic, ticker):
         dic['block_trade_volume'].append(lst[i+6])
         dic['block_trade_value'].append(lst[i+7])
         dic['open_price'].append(lst[i+8])
-<<<<<<< Updated upstream
         dic['high'].append(lst[i+9])
         dic['low'].append(lst[i+10])
-    pd.DataFrame(dic).to_csv(f"./data/raw/{stock_code}.csv")
-=======
-        dic['max_price'].append(lst[i+9])
-        dic['min_price'].append(lst[i+10])
     pd.DataFrame(dic).to_csv(f"./data/raw/{ticker}.csv")
->>>>>>> Stashed changes
 
 
 def get_Data(browser, ticker, index) -> list:
@@ -66,9 +63,9 @@ def get_Data(browser, ticker, index) -> list:
 
 if __name__ == '__main__':
     dic = {"date": [], "closing_price": [], "adjusting_price": [], "rate_change": [],
-           "order_matching_volumn": [], "order_matching_value": [],
+           "order_matching_volume": [], "order_matching_value": [],
            "block_trade_volume": [], "block_trade_value": [],
-           "open_price": [], "max_price": [], "min_price": []}
+           "open_price": [], "high": [], "low": []}
     
     options = Options()
     options.headless = False
@@ -78,3 +75,5 @@ if __name__ == '__main__':
 
     lst = get_Data(browser=browser, ticker='fpt', index=1)
     list_to_csv(lst=lst, dic=dic, ticker='fpt')
+
+    list_to_csv = preprocess(list_to_csv)
