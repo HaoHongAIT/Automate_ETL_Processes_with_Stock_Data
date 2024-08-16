@@ -2,7 +2,7 @@ import pandas as pd
 import re
 
 
-def preprocess(df):
+def preprocess():
     df = pd.read_csv(r".\data\raw\fpt.csv")
     # Convert the 'date' column to datetime format (dd/mm/yyyy)
     df['date'] = pd.to_datetime(df['date'], format='%d/%m/%Y')
@@ -16,7 +16,3 @@ def preprocess(df):
     df['block_trade_volume'] = [int(value.replace(',', '')) for value in df['block_trade_volume']]
     
     return df
-
-print(df)
-preprocess(df)
-print(df)

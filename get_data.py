@@ -1,5 +1,3 @@
-
-
 from time import sleep
 from selenium.webdriver.common.by import By
 from selenium import webdriver
@@ -9,26 +7,26 @@ from time import sleep
 from queue import Queue
 import pandas as pd
 import threading
-from preprocessing.preprocess import preprocess
+from preprocessing import preprocess
 
 
 def read_doc():
     pass
 
 
-def list_to_csv(lst, dic, ticker):    
+def list_to_csv(lst, dic, ticker):
     for i in range(0, len(lst), 11):
         dic['date'].append(lst[i])
-        dic['closing_price'].append(lst[i+1])
-        dic['adjusting_price'].append(lst[i+2])
-        dic['rate_change'].append(lst[i+3])
-        dic['order_matching_volume'].append(lst[i+4])
-        dic['order_matching_value'].append(lst[i+5])
-        dic['block_trade_volume'].append(lst[i+6])
-        dic['block_trade_value'].append(lst[i+7])
-        dic['open_price'].append(lst[i+8])
-        dic['high'].append(lst[i+9])
-        dic['low'].append(lst[i+10])
+        dic['closing_price'].append(lst[i + 1])
+        dic['adjusting_price'].append(lst[i + 2])
+        dic['rate_change'].append(lst[i + 3])
+        dic['order_matching_volume'].append(lst[i + 4])
+        dic['order_matching_value'].append(lst[i + 5])
+        dic['block_trade_volume'].append(lst[i + 6])
+        dic['block_trade_value'].append(lst[i + 7])
+        dic['open_price'].append(lst[i + 8])
+        dic['high'].append(lst[i + 9])
+        dic['low'].append(lst[i + 10])
     pd.DataFrame(dic).to_csv(f"./data/raw/{ticker}.csv")
 
 
@@ -40,19 +38,20 @@ def get_Data(browser, ticker, index) -> list:
         f"https://s.cafef.vn/lich-su-giao-dich-{ticker}-{index}.chn")
 
     search_bar = browser.find_element(By.ID, 'date-inp-disclosure')
-    browser.execute_script("arguments[0].value = '1/7/2024 - 13/8/2024'", search_bar)
+    browser.execute_script(
+        "arguments[0].value = '1/7/2024 - 13/8/2024'", search_bar)
     browser.find_element(By.ID, 'owner-find').click()
     sleep(1)
-    
+
     class_name = ""
-    while "enable" not in class_name:    
+    while "enable" not in class_name:
         try:
             elements = browser.find_elements(
                 By.CSS_SELECTOR, ".render-table-owner td")
             data += [element.text for element in elements]
             next_page = browser.find_element(By.ID, "paging-right")
-            next_page.click()       
-            class_name = next_page.get_attribute("class")     
+            next_page.click()
+            class_name = next_page.get_attribute("class")
             sleep(1)
         except:
             print("Crawling Completely")
@@ -66,7 +65,7 @@ if __name__ == '__main__':
            "order_matching_volume": [], "order_matching_value": [],
            "block_trade_volume": [], "block_trade_value": [],
            "open_price": [], "high": [], "low": []}
-    
+
     options = Options()
     options.headless = False
     options.add_argument("--window-size=1920,1080")
@@ -75,5 +74,4 @@ if __name__ == '__main__':
 
     lst = get_Data(browser=browser, ticker='fpt', index=1)
     list_to_csv(lst=lst, dic=dic, ticker='fpt')
-
-    list_to_csv = preprocess(list_to_csv)
+    list_to_csv = preprocess.preprocess()
