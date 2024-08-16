@@ -1,0 +1,23 @@
+Index: preprocessing/preprocess.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import pandas as pd\r\nimport re\r\n\r\n\r\ndef preprocess(df):\r\n    df = pd.read_csv(r\".\\data\\raw\\fpt.csv\")\r\n    # Convert the 'date' column to datetime format (dd/mm/yyyy)\r\n    df['date'] = pd.to_datetime(df['date'], format='%d/%m/%Y')\r\n    # Replace '--' with 'N/A' in the 'adjusting_price' column\r\n    df['adjusting_price'] = df['adjusting_price'].replace('--', 'N/A')\r\n    # Extract the value inside the parentheses from the 'rate_change' column\r\n    df['rate_change'] = df['rate_change'].apply(lambda x: re.search(r'\\(([-+]?\\d*\\.?\\d+)\\s*%', x).group(1) if pd.notnull(x) else x)\r\n\r\n    df['order_matching_volume'] = [int(value.replace(',', '')) for value in df['order_matching_volume']]\r\n    df['order_matching_value'] = [float(value.replace(',', '')) for value in df['order_matching_value']]\r\n    df['block_trade_volume'] = [int(value.replace(',', '')) for value in df['block_trade_volume']]\r\n    \r\n    return df\r\n\r\nprint(df)\r\npreprocess(df)\r\nprint(df)
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/preprocessing/preprocess.py b/preprocessing/preprocess.py
+--- a/preprocessing/preprocess.py	(revision bbb362a4392b9bf022759289e40189982f0720e7)
++++ b/preprocessing/preprocess.py	(date 1723711582839)
+@@ -1,5 +1,7 @@
+-import pandas as pd
+-import re
++class Preproceess:
++
++    import pandas as pd
++    import re
+ 
+ 
+ def preprocess(df):
+diff --git a/web_scraping/get_data.py b/get_data.py
+rename from web_scraping/get_data.py
+rename to get_data.py
