@@ -2,8 +2,7 @@ import pandas as pd
 import re
 
 
-def preprocess():
-    df = pd.read_csv(r".\data\raw\fpt.csv")
+def preprocess(df):
     # Convert the 'date' column to datetime format (dd/mm/yyyy)
     df['date'] = pd.to_datetime(df['date'], format='%d/%m/%Y')
     # Replace '--' with 'N/A' in the 'adjusting_price' column
@@ -14,5 +13,4 @@ def preprocess():
     df['order_matching_volume'] = [int(value.replace(',', '')) for value in df['order_matching_volume']]
     df['order_matching_value'] = [float(value.replace(',', '')) for value in df['order_matching_value']]
     df['block_trade_volume'] = [int(value.replace(',', '')) for value in df['block_trade_volume']]
-    
     return df
