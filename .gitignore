@@ -1,3 +1,4 @@
 venv
 chromedriver.exe
 /.vscode/
+/.idea/
