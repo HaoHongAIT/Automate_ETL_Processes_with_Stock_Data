@@ -8,7 +8,6 @@ import pandas as pd
 from preprocessing import preprocess
 
 
-
 class Crawl:
     def __init__(self, ticker, url, index):
         self.dic = {"date": [], "closing_price": [], "adjusting_price": [], "rate_change": [],
@@ -37,8 +36,7 @@ class Crawl:
             self.dic['low'].append(lst[i + 10])
         pd.DataFrame(self.dic).to_csv(f"./data/raw/{filename}.csv")
 
-
-    def get_Data(self, time = None) -> list:
+    def get_Data(self, time=None) -> list:
         data = []
         self.browser.get(self.ticker_info['url'])
         if time:
