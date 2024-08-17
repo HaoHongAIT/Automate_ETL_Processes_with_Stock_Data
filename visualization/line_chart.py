@@ -4,8 +4,6 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from plotly.subplots import make_subplots
 import plotly.graph_objects as go
-from datetime import timedelta
-
 plt.style.use("fivethirtyeight")
 
 

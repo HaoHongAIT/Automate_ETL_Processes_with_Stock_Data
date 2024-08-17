@@ -4,7 +4,8 @@ from sklearn.model_selection import train_test_split, GridSearchCV
 from sklearn.metrics import mean_squared_error
 
 
-%%time
+seed = 2024
+
 parameters = {
     'n_estimators': [1_000_000],
     'max_depth': [3, 8, 10, 12],
@@ -13,6 +14,8 @@ parameters = {
     'early_stopping_rounds': [20],
     'random_state': [42]
 }
+# train test split
+
 eval_set = [(X_train, y_train), (X_valid, y_valid)]
 xgboost = XGBRegressor(eval_set=eval_set, objective='reg:squarederror',
                        eval_metric=mean_squared_error, verbose=False)
@@ -21,7 +24,6 @@ clf.fit(X_train, y_train,eval_set=eval_set)
 print(f'Best params: {clf.best_params_}')
 print(f'Best validation score = {clf.best_score_}')
 
-%%time
 model = XGBRegressor(**clf.best_params_, objective='reg:squarederror')
 model.fit(X_train, y_train, eval_set=eval_set, verbose=False)
 
