@@ -1,6 +1,7 @@
 # Web Scraping and Trade Market Analysis
 ## ✅ Todo list
 - [x] [Web scraping](/web_scraping/README.md) (source: cafef.vn)
+- [ ] Crawl multi-threading 
 - [ ] Automatic crawling
 - [ ] Analysis and Predict
 - [ ] **Quantitative trading strategies**
