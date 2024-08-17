@@ -41,7 +41,7 @@ class Crawl:
         self.browser.get(self.ticker_info['url'])
         if time:
             search_bar = self.browser.find_element(By.ID, 'date-inp-disclosure')
-            self.browser.execute_script(time, search_bar)
+            self.browser.execute_script(f"arguments[0].value = '{time}' ", search_bar)
             self.browser.find_element(By.ID, 'owner-find').click()
             sleep(1)
 

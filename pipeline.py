@@ -8,13 +8,14 @@ if __name__ == '__main__':
     fpt_crawler = WebScraping.Crawl(ticker, url, index)
 
     ## get data
-    fpt_data = fpt_crawler.get_Data(time=None)
+    fpt_data = fpt_crawler.get_Data(time='01/07/2024 - 17/08/2024')
     ## save
-    fpt_crawler.save(lst=fpt_data, filename="fpt")
+    fpt_crawler.save(lst=fpt_data, filename="fpt") #raw csv
 
     # PREPROCESS
     ##
-
+    dataframe = preprocess.preprocess(ticker = 'fpt') #preprocess csv
+    print(dataframe)
     ## save
     # FORECAST
 
@@ -24,6 +25,4 @@ if __name__ == '__main__':
 
     # automatation
 
-    lst = get_Data(browser=browser, ticker='fpt', index=1)
-    list_to_csv(lst=lst, dic=dic, ticker='fpt')
-    list_to_csv = preprocess.preprocess()
+
