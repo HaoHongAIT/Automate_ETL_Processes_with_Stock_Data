@@ -1,11 +1,7 @@
-from web_scraping import  WebScraping
+from web_scraping import WebScraping
 from preprocessing import preprocess
 
-
-
-
 if __name__ == '__main__':
-
     # WEB SCRAPING
     ticker, index = 'fpt', [1]
     url = f"https://s.cafef.vn/lich-su-giao-dich-{ticker}-{index}.chn"
@@ -22,13 +18,11 @@ if __name__ == '__main__':
     ## save
     # FORECAST
 
-
     # FORECAST orecast
 
     # implement
 
     # automatation
-
 
     lst = get_Data(browser=browser, ticker='fpt', index=1)
     list_to_csv(lst=lst, dic=dic, ticker='fpt')
