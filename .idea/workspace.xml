@@ -5,14 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="49b3fe0d-39b3-4e8b-b9d8-1e2fb8150182" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/Web_Scraping_and_Trade_Market_Analysis.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Web_Scraping_and_Trade_Market_Analysis.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/raw/fpt.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/raw/fpt.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model/xgboost.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/visualization/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/visualization/line_chart.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_16_8_2024_9_14_AM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_16_8_2024_9_14_AM__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/test.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/data/test.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pipeline.py" beforeDir="false" afterPath="$PROJECT_DIR$/pipeline.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/preprocessing/preprocess.py" beforeDir="false" afterPath="$PROJECT_DIR$/preprocessing/preprocess.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requiremets.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requiremets.txt" afterDir="false" />
     </list>
-    <list id="dfb3e519-38a7-4688-98a3-b4a1aeaf8c5c" name="Changes by hongt" comment="">
-      <change beforePath="$PROJECT_DIR$/get_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/get_data.py" afterDir="false" />
-    </list>
+    <list id="dfb3e519-38a7-4688-98a3-b4a1aeaf8c5c" name="Changes by hongt" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -61,6 +64,7 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Workspace\github\Web_Scraping_and_Trade_Market_Analysis" />
       <recent name="F:\2024\Web_Scraping_and_Trade_Market_Analysis" />
     </key>
   </component>
