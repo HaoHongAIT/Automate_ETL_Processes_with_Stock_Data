@@ -2,7 +2,8 @@ import pandas as pd
 import re
 
 
-def preprocess(df):
+def preprocess(ticker):
+    df = pd.read_csv(f"./data/raw/{ticker}.csv")
     # Convert the 'date' column to datetime format (dd/mm/yyyy)
     df['date'] = pd.to_datetime(df['date'], format='%d/%m/%Y')
     # Replace '--' with 'N/A' in the 'adjusting_price' column
@@ -18,7 +19,7 @@ def preprocess(df):
 
 ticker_names = ['fpt']
 ticker_dict = {}
-root_folder = '../data/raw/'
+root_folder = './data/raw/'
 for file_name in ticker_names:
     path = f"{root_folder}{file_name}.csv"
     ticker = pd.read_csv(path)
