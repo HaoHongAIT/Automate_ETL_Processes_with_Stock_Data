@@ -12,8 +12,12 @@ def transform(ticker):
     # Extract the value inside the parentheses from the 'rate_change' column
     rate = lambda x: re.search(r'\(([-+]?\d*\.?\d+)\s*%', x).group(1) if pd.notnull(x) else x
     df['rate_change'] = df['rate_change'].apply(rate)
-
+    # Replace comma
     df['order_matching_volume'] = [int(value.replace(',', '')) for value in df['order_matching_volume']]
     df['order_matching_value'] = [float(value.replace(',', '')) for value in df['order_matching_value']]
     df['block_trade_volume'] = [int(value.replace(',', '')) for value in df['block_trade_volume']]
+    # Add ticker code
+    df['ticker'] = ticker.lower()
     return df
+
+    

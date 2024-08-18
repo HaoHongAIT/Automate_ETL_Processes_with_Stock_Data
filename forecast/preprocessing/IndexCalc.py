@@ -61,6 +61,8 @@ def calc_MACD(ticker_df):
     ticker_df['MACD'] = pd.Series(EMA_12 - EMA_26)
     ticker_df['MACD_signal'] = pd.Series(ticker_df.MACD.ewm(span=9, min_periods=9).mean())
 
+   
+
 
 if __name__ == '__main__':
     time_dict = {'minutes': [5, 15, 30], 'hours': [1, 6, 12], 'days': [1, 10, 15, 30]}

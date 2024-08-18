@@ -2,3 +2,5 @@ venv
 chromedriver.exe
 /.vscode/
 /.idea/
+*.pyc
+*/__pycache__/
