@@ -1,5 +1,5 @@
 import streamlit as st
-from helper import *
+from utils import *
 
 # Configure the page
 st.set_page_config(
