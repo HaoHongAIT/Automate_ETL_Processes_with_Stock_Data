@@ -2,7 +2,6 @@ import pandas as pd
 import re
 
 
-
 def transform(ticker):
     # Read csv file
     df = pd.read_csv(f"./data/raw/{ticker}.csv")
