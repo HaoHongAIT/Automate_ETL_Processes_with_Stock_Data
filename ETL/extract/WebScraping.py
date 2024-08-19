@@ -73,9 +73,8 @@ class Crawl:
             class_name = next_page.get_attribute("class")
             sleep(1)
         # SAVE FILE
-        cols = ["date", "rate_change", "so luong mua", "khoi luong mua",
-                "khoi luog trung binh 1 lenh mua", "so lenh ban", "khoi luong ban",
-                "khoi luog trung binh 1 ban" "khoi luong rong"]
+        cols = ["date", "rate_change", "buy_orders", "buy_volume", "average_buy_order_volume",
+                "sell_orders", "sell_volume", "average_sell_order_volume", "net_volume" ]
         save(ticker=ticker, lst=data, cols=cols, index=2)
         print("Get Order Flow Statistics Complete")
         # self.browser.close()
@@ -102,9 +101,9 @@ class Crawl:
             class_name = next_page.get_attribute("class")
             sleep(1)
         # SAVE FILE
-        cols = ["date", "rate_change", "khoi luong GD rong",
-                "gia tri gd rong(ty vnd)", "khoi luong mua", "gia tri mua (ty vnd)",
-                "khoi luong ban", "gia tri ban(ty vnd)", "room con lai", "dang so huu"]
+        cols = ["date", "rate_change", "net_trading_volume", "net_trading_value_billion_vnd",
+                "buy_volume", "buy_value_billion_vnd", "sell_volume", "sell_value_billion_vnd",
+                "remaining_room", "current_ownership"]
         save(ticker=ticker, lst=data, cols=cols, index=3)
         print("Get Foreign Investors Complete")
         # self.browser.close()
@@ -132,9 +131,10 @@ class Crawl:
             class_name = next_page.get_attribute("class")
             sleep(1)
         # SAVE FILE
-        cols = ["code", "date", "khoi luong mua", "gia tri mua(ty vnd)",
-                "khoi luong ban", "gia tri ban(ty vnd)", "khoi luong giao dich rong",
-                "gia tri giao dich rong(ty vnd)"]
+        cols = ["ticker", "date", "buy_volume", "buy_value_bil_vnd",
+                "sell_volume", "sell_value_bil_vnd", "net_trading_volume",
+                "net_trading_value_bil_vnd"]
+
         save(ticker=ticker, lst=data, cols=cols, index=4)
         print("Get Proprietry Trading Complete")
         # self.browser.close()
