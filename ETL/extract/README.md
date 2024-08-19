@@ -7,7 +7,7 @@ pip install -r requiremets.txt
 ```
 
 ### Download Driver
-- Chorme: https://developer.chrome.com/docs/chromedriver/downloads/
+- Chorme: https://googlechromelabs.github.io/chrome-for-testing/#stable
 - Edge: https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/
 
 Depending on the web browser you use to download the corresponding driver

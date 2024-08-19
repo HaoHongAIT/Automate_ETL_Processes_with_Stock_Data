@@ -2,7 +2,7 @@ import pandas as pd
 import re
 
 
-def transform(ticker):
+def price_history(ticker):
     # Read csv file
     df = pd.read_csv(f"./data/raw/{ticker}.csv")
     # Convert the 'date' column to datetime format (dd/mm/yyyy)
