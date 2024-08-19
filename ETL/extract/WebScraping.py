@@ -6,11 +6,11 @@ from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 
 
-def save(lst, ticker, cols):    
+def save(lst, ticker, cols, index):
     path = f"./data/raw/{ticker}.csv"    
     num_cols = len(cols)
     sub_lst = [lst[i:i+num_cols] for i in range(0, len(lst), num_cols)]
-    pd.DataFrame(sub_lst [1:], columns=cols).to_csv(f"./data/raw/{ticker}.csv", index=False)
+    pd.DataFrame(sub_lst [1:], columns=cols).to_csv(f"./data/raw/{ticker}_{index}", index=False)
     print(f"Save Successfully... {path}")
 
 class Crawl:
@@ -48,9 +48,9 @@ class Crawl:
                 "order_matching_volume", "order_matching_value",
                 "block_trade_volume", "block_trade_value", 
                 "open", "high", "low"]
-        save(ticker=ticker, lst=data, cols=cols)
+        save(ticker=ticker, lst=data, cols=cols, index=1)
         print("Get Price History Complete")
-        self.browser.close()
+        # self.browser.close()
         return data
 
     def get_order_flow_stat(self, ticker, time=None):
@@ -76,9 +76,9 @@ class Crawl:
         cols = ["date", "rate_change", "so luong mua", "khoi luong mua",
                 "khoi luog trung binh 1 lenh mua", "so lenh ban", "khoi luong ban",
                 "khoi luog trung binh 1 ban" "khoi luong rong"]
-        save(ticker=ticker, lst=data, cols=cols)        
+        save(ticker=ticker, lst=data, cols=cols, index=2)
         print("Get Order Flow Statistics Complete")
-        self.browser.close()
+        # self.browser.close()
 
     def get_foreign_investors(self, ticker, time=None):
         url = f"https://s.cafef.vn/lich-su-giao-dich-{ticker}-3.chn"
@@ -105,22 +105,49 @@ class Crawl:
         cols = ["date", "rate_change", "khoi luong GD rong",
                 "gia tri gd rong(ty vnd)", "khoi luong mua", "gia tri mua (ty vnd)",
                 "khoi luong ban", "gia tri ban(ty vnd)", "room con lai", "dang so huu"]
-        save(ticker=ticker, lst=data, cols=cols)
+        save(ticker=ticker, lst=data, cols=cols, index=3)
         print("Get Foreign Investors Complete")
-        self.browser.close()
+        # self.browser.close()
 
     def get_proprietary_trading(self, ticker, time=None):
         url = f"https://s.cafef.vn/lich-su-giao-dich-{ticker}-4.chn"
         print("Get Proprietary Trading Complete")
+        self.browser.get(url)
+        if time:
+            search_bar = self.browser.find_element(
+                By.ID, 'date-inp-disclosure')
+            self.browser.execute_script(
+                f"arguments[0].value = '{time}' ", search_bar)
+            self.browser.find_element(By.ID, 'owner-find').click()
+            sleep(1)
+
+        class_name = ""
+        data = []
+        while "enable" not in class_name:
+            elements = self.browser.find_elements(
+                By.CSS_SELECTOR, ".render-table-owner td")
+            data += [element.text for element in elements]
+            next_page = self.browser.find_element(By.ID, "paging-right")
+            next_page.click()
+            class_name = next_page.get_attribute("class")
+            sleep(1)
+        # SAVE FILE
+        cols = ["code", "date", "khoi luong mua", "gia tri mua(ty vnd)",
+                "khoi luong ban", "gia tri ban(ty vnd)", "khoi luong giao dich rong",
+                "gia tri giao dich rong(ty vnd)"]
+        save(ticker=ticker, lst=data, cols=cols, index=4)
+        print("Get Proprietry Trading Complete")
+        # self.browser.close()
 
     def run(self, time_range=None) -> list:
-        for ticker in self.tickers:
-            self.get_price_history(ticker=ticker, time=time_range)
-            # self.get_order_flow_stat(ticker=ticker, time=time_range)
-            # self.get_order_flow_stat(ticker=ticker, time=time_range)
-            # self.get_proprietary_trading(ticker=ticker, time=time_range)
-        
-        print("Web Scraping Complete")
+            for ticker in self.tickers:
+                self.get_price_history(ticker=ticker, time=time_range)
+                self.get_order_flow_stat(ticker=ticker, time=time_range)
+                self.get_foreign_investors(ticker=ticker, time=time_range)
+                self.get_proprietary_trading(ticker=ticker, time=time_range)
+
+            self.browser.close()
+            print("Web Scraping Complete")
 
 
 
