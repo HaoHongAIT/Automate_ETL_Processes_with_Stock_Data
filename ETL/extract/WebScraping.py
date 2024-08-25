@@ -10,8 +10,10 @@ def save(lst, ticker, cols, index):
     path = f"./data/raw/{ticker}"
     num_cols = len(cols)
     sub_lst = [lst[i:i+num_cols] for i in range(0, len(lst), num_cols)]
-    pd.DataFrame(sub_lst [1:], columns=cols).to_csv(f"./data/raw/{ticker}/{ticker}_{index}.csv", index=False)
-    print(f"Save Successfully... {path}")
+    pd.DataFrame(sub_lst[1:], columns=cols).to_csv(
+        f"./data/raw/{ticker}/{ticker}_{index}.csv", index=False)
+    print(f"Save Successfully >> {path}")
+
 
 class Crawl:
     def __init__(self, tickers):
@@ -26,7 +28,8 @@ class Crawl:
         url = f"https://s.cafef.vn/lich-su-giao-dich-{ticker}-1.chn"
         self.browser.get(url)
         if time:
-            search_bar = self.browser.find_element(By.ID, 'date-inp-disclosure')
+            search_bar = self.browser.find_element(
+                By.ID, 'date-inp-disclosure')
             self.browser.execute_script(
                 f"arguments[0].value = '{time}' ", search_bar)
             self.browser.find_element(By.ID, 'owner-find').click()
@@ -43,9 +46,9 @@ class Crawl:
             class_name = next_page.get_attribute("class")
             sleep(1)
         # SAVE FILE
-        cols = ["date", "close", "adjusting_price", "rate_change", 
+        cols = ["date", "close", "adjusting_price", "rate_change",
                 "order_matching_volume", "order_matching_value",
-                "block_trade_volume", "block_trade_value", 
+                "block_trade_volume", "block_trade_value",
                 "open", "high", "low"]
         save(ticker=ticker, lst=data, cols=cols, index=1)
         print("Get Price History Complete")
@@ -56,14 +59,17 @@ class Crawl:
         url = f"https://s.cafef.vn/lich-su-giao-dich-{ticker}-2.chn"
         self.browser.get(url)
         if time:
-            search_bar = self.browser.find_element(By.ID, 'date-inp-disclosure')
-            self.browser.execute_script(f"arguments[0].value = '{time}' ", search_bar)
+            search_bar = self.browser.find_element(
+                By.ID, 'date-inp-disclosure')
+            self.browser.execute_script(
+                f"arguments[0].value = '{time}' ", search_bar)
             self.browser.find_element(By.ID, 'owner-find').click()
             sleep(1)
         class_name = ""
         data = []
         while "enable" not in class_name:
-            elements = self.browser.find_elements(By.CSS_SELECTOR, ".render-table-owner td")
+            elements = self.browser.find_elements(
+                By.CSS_SELECTOR, ".render-table-owner td")
             data += [element.text for element in elements]
             next_page = self.browser.find_element(By.ID, "paging-right")
             next_page.click()
@@ -71,7 +77,7 @@ class Crawl:
             sleep(1)
         # SAVE FILE
         cols = ["date", "rate_change", "buy_orders", "buy_volume", "average_buy_order_volume",
-                "sell_orders", "sell_volume", "average_sell_order_volume", "net_volume" ]
+                "sell_orders", "sell_volume", "average_sell_order_volume", "net_volume"]
         save(ticker=ticker, lst=data, cols=cols, index=2)
         print("Get Order Flow Statistics Complete")
         # self.browser.close()
@@ -80,16 +86,18 @@ class Crawl:
         url = f"https://s.cafef.vn/lich-su-giao-dich-{ticker}-3.chn"
         self.browser.get(url)
         if time:
-            search_bar = self.browser.find_element(By.ID, 'date-inp-disclosure')
+            search_bar = self.browser.find_element(
+                By.ID, 'date-inp-disclosure')
             self.browser.execute_script(
                 f"arguments[0].value = '{time}' ", search_bar)
             self.browser.find_element(By.ID, 'owner-find').click()
             sleep(1)
-            
+
         class_name = ""
         data = []
         while "enable" not in class_name:
-            elements = self.browser.find_elements(By.CSS_SELECTOR, ".render-table-owner td")
+            elements = self.browser.find_elements(
+                By.CSS_SELECTOR, ".render-table-owner td")
             data += [element.text for element in elements]
             next_page = self.browser.find_element(By.ID, "paging-right")
             next_page.click()
@@ -135,11 +143,15 @@ class Crawl:
         # self.browser.close()
 
     def run(self, time_range=None):
-            for ticker in self.tickers:
-                self.get_price_history(ticker=ticker, time=time_range)
-                self.get_order_flow_stat(ticker=ticker, time=time_range)
-                self.get_foreign_investors(ticker=ticker, time=time_range)
-                self.get_proprietary_trading(ticker=ticker, time=time_range)
+        for ticker in self.tickers:
+            self.get_price_history(ticker=ticker, time=time_range)
+            self.get_order_flow_stat(ticker=ticker, time=time_range)
+            self.get_foreign_investors(ticker=ticker, time=time_range)
+            self.get_proprietary_trading(ticker=ticker, time=time_range)
 
-            self.browser.close()
-            print("Web Scraping Complete")
+        self.browser.close()
+        print("Web Scraping Complete")
+
+    def run_multi_thread(self):
+        pass
+        print("Web Scraping Complete")

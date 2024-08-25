@@ -61,3 +61,8 @@ def trans_proprietary_trading(ticker, index=4):
     print("Transform Complete Proprietary Trading")
     df.to_csv(f"./data/raw/{ticker}/transformed_{ticker}_{index}.csv",  index=False)
 
+def run(ticker):
+    trans_price_history(ticker=ticker)
+    trans_foreign_investors(ticker=ticker)
+    trans_order_flow_stat(ticker=ticker)
+    trans_proprietary_trading(ticker=ticker)

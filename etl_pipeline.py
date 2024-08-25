@@ -11,10 +11,7 @@ for ticker in tickers:
     raw_data = ticker_crawler.run(time_range=time_range)
 
     ## TRASFORM > Transformed Data
-    transform.trans_price_history(ticker=ticker)
-    transform.trans_foreign_investors(ticker=ticker)
-    transform.trans_order_flow_stat(ticker=ticker)
-    transform.trans_proprietary_trading(ticker=ticker)
+    transform.run(ticker=ticker)
 
 ## Load > Available Data
         
