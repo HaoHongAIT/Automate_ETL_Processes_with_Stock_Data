@@ -3,4 +3,4 @@ chromedriver.exe
 /.vscode/
 /.idea/
 *.pyc
-*/__pycache__/
+*/__pycache__
