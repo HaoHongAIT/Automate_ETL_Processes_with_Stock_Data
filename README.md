@@ -37,6 +37,52 @@ The app workflow is:
 3. AI model is trained on the data 
 4. Model makes multi-day price forecasts
 5. Results are plotted with Plotly
+## 📁 Repository Structure
+```
+📦
+├─ README.md                 # General project documentation
+├─ constants.py              # Shared constants and configurations used across the project
+├─ data                      # Containt all data
+│  ├─ raw               
+│  ├─ transformed       
+│  ├─ image
+│  └─ document
+├─ distributed_training      # Code and configuration for distributed training
+│  ├─ Dockerfile             # Dockerfile for the distributed training component
+│  ├─ README_distributed.md  # Documentation for the distributed training component
+│  ├─ build.sh               # Script to build the distributed training Docker image
+│  ├─ mwt.py                 # Main logic for the Multi-Worker Training component
+│  ├─ nets                   # Neural network architecture definitions
+│  │  └─ nn.py               # Neural network model implementation
+│  ├─ test                   # Test configuration for the distributed training
+│  │  └─ test.yaml           # Test deployment configuration
+│  ├─ utils                  # Utility functions for the distributed training
+│  │  ├─ config.py           # Configuration handling for the distributed training
+│  │  ├─ dataset.py          # Dataset-related utilities
+│  │  └─ image_utils.py      # Image processing utilities
+│  └─ weights                # Folder containing a pre-trained model
+│     └─ model.h5            # Saved weights for the pre-trained model
+├─ docker-compose.yml        # Docker Compose configuration for the entire project
+├─ images                    # Folder for storing project-related images
+├─ mlflow                    # Code and configuration for the MLflow component
+│  └─ Dockerfile             # Dockerfile for the MLflow component
+├─ model_repo                # Repository for storing the trained model
+│  └─ yolov8n_car            # Folder for the YOLOv8 car detection model
+│     ├─ 1                   # Version 1 of the model
+│     │  └─ model.onnx       # ONNX format of the trained model
+│     └─ config.pbtxt        # Triton Inference Server configuration for the model
+├─ notebooks                 # Folder for Jupyter Notebooks (likely for debugging/exploration)
+│  └─ debug.ipynb            # Sample Jupyter Notebook for debugging
+├─ requirements.txt          # Python dependencies for the project
+└─ streaming                 # Code and configuration for the data streaming component
+   ├─ Dockerfile             # Dockerfile for the streaming component
+   ├─ README_streaming.md    # Documentation for the streaming component
+   ├─ docker-compose.yml     # Docker Compose configuration for the streaming component
+   ├─ kafka_connector        # Configuration for the Kafka connector
+   │  └─ connect-timescaledb-sink.json # Kafka connector configuration for TimescaleDB sink
+   ├─ produce.py             # Script to produce sample data for the streaming component
+   └─ run.sh                 # Script to run the streaming component
+```
 
 ## 🚀 Getting Start
 1. Clone the repo
