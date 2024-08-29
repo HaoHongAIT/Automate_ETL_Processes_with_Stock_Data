@@ -1,4 +1,4 @@
-code,date,khoi luong mua,gia tri mua(ty vnd),khoi luong ban,gia tri ban(ty vnd),khoi luong giao dich rong,gia tri giao dich rong(ty vnd)
+ticker,date,buy_volume,buy_value_bil_vnd,sell_volume,sell_value_bil_vnd,net_trading_volume,net_trading_value_bil_vnd
 FPT,15/08/2024,"175,500",22.58,"242,900",31.31,"-67,400",-8.73
 FPT,14/08/2024,"158,300",20.56,"228,300",29.69,"-70,000",-9.13
 FPT,13/08/2024,"290,400",37.5,"221,000",28.57,"69,400",8.92
