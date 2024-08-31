@@ -37,7 +37,7 @@ def trans_order_flow_stat(ticker, index=2):
     df['ticker'] = ticker.lower()
 
 
-    df.drop(columns=['rate_change', ])
+    df.drop(columns=['rate_change'], inplace= True)
     print("Transform Complete Order Flow Statistics")
     df.to_csv(f"./data/raw/{ticker}/transformed_{ticker}_{index}.csv",  index=False)
 
@@ -54,7 +54,7 @@ def trans_foreign_investors(ticker, index=3):
     # Add ticker code
     df['ticker'] = ticker.lower()
 
-    df.drop(columns=['rate_change', ])
+    df.drop(columns=['rate_change'], inplace= True)
     print("Transform Complete Foreign Investors")
     df.to_csv(f"./data/raw/{ticker}/transformed_{ticker}_{index}.csv",  index=False)
 
