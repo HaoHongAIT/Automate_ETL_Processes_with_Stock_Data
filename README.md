@@ -1,13 +1,12 @@
 # Web Scraping and Trade Market Analysis
 ## ✅ Todo list
-- [x] [Web scraping](/web_scraping/README.md) (source: cafef.vn)
+- [x] Extract stock data from cafef.vn (not include news)
+- [x] Transform raw data to available datatype for analysis
+- [x] Load transformed data to database
 - [ ] Crawl multi-threading 
-- [ ] Automatic crawling
-- [ ] Analysis and Predict
-- [ ] **Quantitative trading strategies**
-- [ ] **Portfolio optimization and tracking**
-- [ ] **Additional fundamental data**
-- [ ] **User account system**
+- [ ] Analysis and Forecast future trend, price of stock
+- [ ] Story telling with a dashboard
+- [ ] Automatic update
 
 ## 📈 About
 By analyzing fundamental factors or quantitative factors to predict the rise and fall of stock prices, investors will make decisions to buy or sell stocks to seek profits. However, the stock market always has unexpected factors that do not align with users' subjective intentions, so predicting market trends is a crucial task that has been attracting the attention of investors, economists, and scientists.
@@ -37,33 +36,28 @@ The app workflow is:
 3. AI model is trained on the data 
 4. Model makes multi-day price forecasts
 5. Results are plotted with Plotly
+
 ## 📁 Repository Structure
 ```
 📦
 ├─ README.md                 # General project documentation
 ├─ constants.py              # Shared constants and configurations used across the project
 ├─ data                      # Containt all data
-│  ├─ raw               
+│  ├─ raw                  
 │  ├─ transformed       
 │  ├─ image
 │  └─ document
-├─ distributed_training      # Code and configuration for distributed training
-│  ├─ Dockerfile             # Dockerfile for the distributed training component
-│  ├─ README_distributed.md  # Documentation for the distributed training component
-│  ├─ build.sh               # Script to build the distributed training Docker image
-│  ├─ mwt.py                 # Main logic for the Multi-Worker Training component
-│  ├─ nets                   # Neural network architecture definitions
-│  │  └─ nn.py               # Neural network model implementation
-│  ├─ test                   # Test configuration for the distributed training
-│  │  └─ test.yaml           # Test deployment configuration
-│  ├─ utils                  # Utility functions for the distributed training
-│  │  ├─ config.py           # Configuration handling for the distributed training
-│  │  ├─ dataset.py          # Dataset-related utilities
-│  │  └─ image_utils.py      # Image processing utilities
+├─ forecast                  # Code and configuration for distributed training
+│  ├─ models
+│  ├─ preprocessing
+│  ├─ train.ipynb
+│  │  ├─ 
+│  │  ├─ 
+│  │  └─ 
 │  └─ weights                # Folder containing a pre-trained model
 │     └─ model.h5            # Saved weights for the pre-trained model
-├─ docker-compose.yml        # Docker Compose configuration for the entire project
-├─ images                    # Folder for storing project-related images
+├─ pages
+├─ visualization
 ├─ mlflow                    # Code and configuration for the MLflow component
 │  └─ Dockerfile             # Dockerfile for the MLflow component
 ├─ model_repo                # Repository for storing the trained model
@@ -76,11 +70,6 @@ The app workflow is:
 ├─ requirements.txt          # Python dependencies for the project
 └─ streaming                 # Code and configuration for the data streaming component
    ├─ Dockerfile             # Dockerfile for the streaming component
-   ├─ README_streaming.md    # Documentation for the streaming component
-   ├─ docker-compose.yml     # Docker Compose configuration for the streaming component
-   ├─ kafka_connector        # Configuration for the Kafka connector
-   │  └─ connect-timescaledb-sink.json # Kafka connector configuration for TimescaleDB sink
-   ├─ produce.py             # Script to produce sample data for the streaming component
    └─ run.sh                 # Script to run the streaming component
 ```
 
