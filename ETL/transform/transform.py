@@ -39,7 +39,7 @@ def trans_order_flow_stat(ticker, index=2):
 
     df.drop(columns=['rate_change'], inplace= True)
     print("Transform Complete Order Flow Statistics")
-    df.to_csv(f"./data/raw/{ticker}/transformed_{ticker}_{index}.csv",  index=False)
+    df.to_csv(f"./data/transformed/{ticker}/transformed_{ticker}_{index}.csv",  index=False)
 
 def trans_foreign_investors(ticker, index=3):
     df = pd.read_csv(f"./data/raw/{ticker}/{ticker}_{index}.csv")
@@ -56,7 +56,7 @@ def trans_foreign_investors(ticker, index=3):
 
     df.drop(columns=['rate_change'], inplace= True)
     print("Transform Complete Foreign Investors")
-    df.to_csv(f"./data/raw/{ticker}/transformed_{ticker}_{index}.csv",  index=False)
+    df.to_csv(f"./data/transformed/{ticker}/transformed_{ticker}_{index}.csv",  index=False)
 
 def trans_proprietary_trading(ticker, index=4):
     df = pd.read_csv(f"./data/raw/{ticker}/{ticker}_{index}.csv")
@@ -67,7 +67,7 @@ def trans_proprietary_trading(ticker, index=4):
     df["net_trading_volume"] = [int(value.replace(',', '')) for value in df["net_trading_volume"]]
     df['ticker'] = ticker.lower()
     print("Transform Complete Proprietary Trading")
-    df.to_csv(f"./data/raw/{ticker}/transformed_{ticker}_{index}.csv",  index=False)
+    df.to_csv(f"./data/transformed/{ticker}/transformed_{ticker}_{index}.csv",  index=False)
 
 def run(ticker):
     trans_price_history(ticker=ticker)

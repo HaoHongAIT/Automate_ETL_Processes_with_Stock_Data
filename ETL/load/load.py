@@ -28,6 +28,5 @@ load_to_database(ticker_table, 'stock_ticker', ticker_table.columns.tolist(), cu
 
 conn.commit()
 conn.close()
-
 print("CSV data loaded successfully into the database.")
 

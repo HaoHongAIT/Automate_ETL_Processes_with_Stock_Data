@@ -1,10 +1,9 @@
 -- Ticker
 CREATE TABLE stock_ticker (
     ticker TEXT PRIMARY KEY,
-    name TEXT,
+    name TEXT NOT NULL,
     platform TEXT
 );
-
 -- transformed_fpt_1.csv
 CREATE TABLE prices_history (
     date DATE NOT NULL,

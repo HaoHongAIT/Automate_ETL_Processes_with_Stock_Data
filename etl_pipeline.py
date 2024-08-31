@@ -1,5 +1,6 @@
 from ETL.extract import WebScraping
 from ETL.transform import transform
+# from ETL.load import load
 
 tickers = ['fpt']
 time_range = '01/07/2024 - 17/08/2024'
