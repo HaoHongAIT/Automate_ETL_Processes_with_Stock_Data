@@ -1,47 +1,32 @@
 import sqlite3
+import pandas as pd
 import csv
 
 conn = sqlite3.connect('stock_market.db')
 cursor = conn.cursor()
 
-def load_data_from_csv(csv_file, table_name, cursor):
-    with open(csv_file, 'r') as file:
-        # Use the csv reader to read the CSV file
-        reader = csv.reader(file)
-        print(next(reader))
-        # Skip the header row
-        next(reader)
+def create_string(name_lst):
+    cols_str = ",".join(name_lst)
+    param_str = ["?" for i in name_lst]
+    param_str = ",".join(param_str)
+    return param_str, cols_str
 
-        if table_name == 'prices_history':
-            query = '''INSERT INTO prices_history (date, open_price, close_price, high_price, low_price, volume, stock_symbol)
-                       VALUES (?, ?, ?, ?, ?, ?, ?)'''
-        elif table_name == 'stock_trades':
-            query = '''INSERT INTO stock_trades (date, buy_volume, sell_volume, net_volume, stock_symbol, stock_price_id)
-                       VALUES (?, ?, ?, ?, ?, ?)'''
-        elif table_name == 'stock_transactions':
-            query = '''INSERT INTO stock_transactions (date, buy_volume, buy_value, sell_volume, sell_value, net_volume, net_value, stock_symbol)
-                       VALUES (?, ?, ?, ?, ?, ?, ?, ?)'''
-        elif table_name == 'detailed_stock_trades':
-            query = '''INSERT INTO detailed_stock_trades (stock_symbol, date, buy_volume, buy_value, sell_volume, sell_value, net_volume, net_value)
-                       VALUES (?, ?, ?, ?, ?, ?, ?, ?)'''
+def load_to_database(dataframe, table_name, cols_name, cursor):
+    param_str, cols_str = create_string(name_lst=cols_name)
+    query = f"INSERT INTO {table_name} ("+cols_str + f") VALUES ({param_str})"
+    for row in range(len(dataframe)):
+        cursor.execute(query, dataframe.iloc[row].values.tolist())
 
-        # Execute the insertion for each row
-        for row in reader:
-            cursor.execute(query, row)
+table_names = ['prices_history', 'order_flow_stat', 'foreign_investors', 'proprietary_trading']
+for i in range(len(table_names)):
+    df = pd.read_csv(f"./data/transformed/fpt/transformed_fpt_{i+1}.csv")
+    load_to_database(df, table_names[i], df.columns.tolist(), cursor)
 
 
-# Load data into each table
+ticker_table = pd.read_excel(f".\data\document\code_stock.xlsx")
+load_to_database(ticker_table, 'stock_ticker', ticker_table.columns.tolist(), cursor)
 
-load_data_from_csv(csv_file='transformed_fpt_1.csv', tabel_name='prices_history', cursor=cursor)
-load_data_from_csv('transformed_fpt_2.csv', 'stock_trades', cursor)
-load_data_from_csv('transformed_fpt_3.csv', 'stock_transactions', cursor)
-load_data_from_csv('transformed_fpt_4.csv', 'detailed_stock_trades', cursor)
-
-# Commit the transactions
 conn.commit()
-
-# Close the connection
 conn.close()
-
 print("CSV data loaded successfully into the database.")
 
