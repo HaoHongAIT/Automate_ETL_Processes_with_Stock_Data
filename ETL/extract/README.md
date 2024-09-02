@@ -15,6 +15,6 @@ Depending on the web browser you use to download the corresponding driver
 ###
 We will collect data at [cafef.vn](https://s.cafef.vn/lich-su-giao-dich-vnindex-1.chn)
 ```bash
-py Multi-threading.py
+py multi_threading.py
 ```
 

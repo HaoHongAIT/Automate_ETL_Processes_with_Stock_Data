@@ -4,7 +4,7 @@
 - [x] Extract stock data from cafef.vn (not include news)
 - [x] Transform raw data to available datatype for analysis
 - [x] Load transformed data to database
-- [ ] Crawl multi-threading 
+- [x] Crawl multi-threading 
 - [ ] Analysis and Forecast future trend, price of stock
 - [ ] Story telling with a dashboard
 - [ ] Automatic update
@@ -42,36 +42,30 @@ The app workflow is:
 ```
 📦
 ├─ README.md                 # General project documentation
-├─ constants.py              # Shared constants and configurations used across the project
-├─ data                      # Containt all data
-│  ├─ raw                  
+├─ data                      # Containt all data in this project
+│  ├─ raw                    # CSV files
 │  ├─ transformed       
 │  ├─ image
 │  └─ document
-├─ forecast                  # Code and configuration for distributed training
+├─ ETL                       # ETL process
+│  ├─ extract                # 
+│  ├─ transform              #
+│     ├─ transform.py        #
+│  ├─ load                 
+│  └─ airflow                # 
+├─ forecast                  # 
 │  ├─ models
 │  ├─ preprocessing
-│  ├─ train.ipynb
-│  │  ├─ 
-│  │  ├─ 
-│  │  └─ 
+│  ├─ train.ipynb            # Use this file on colab to train
 │  └─ weights                # Folder containing a pre-trained model
 │     └─ model.h5            # Saved weights for the pre-trained model
 ├─ pages
-├─ visualization
-├─ mlflow                    # Code and configuration for the MLflow component
-│  └─ Dockerfile             # Dockerfile for the MLflow component
-├─ model_repo                # Repository for storing the trained model
-│  └─ yolov8n_car            # Folder for the YOLOv8 car detection model
-│     ├─ 1                   # Version 1 of the model
-│     │  └─ model.onnx       # ONNX format of the trained model
-│     └─ config.pbtxt        # Triton Inference Server configuration for the model
-├─ notebooks                 # Folder for Jupyter Notebooks (likely for debugging/exploration)
-│  └─ debug.ipynb            # Sample Jupyter Notebook for debugging
-├─ requirements.txt          # Python dependencies for the project
-└─ streaming                 # Code and configuration for the data streaming component
-   ├─ Dockerfile             # Dockerfile for the streaming component
-   └─ run.sh                 # Script to run the streaming component
+├─ visualization             # Power BI
+├─ chromedriver.exe          # Chrome Driver 
+├─ stock_market.db           #
+├─ etl_pipeline.py           #
+├─ Main.py                   # Streamlit
+└─ requirements.txt          # library
 ```
 
 ## 🚀 Getting Start
