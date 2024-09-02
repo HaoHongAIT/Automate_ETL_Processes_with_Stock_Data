@@ -7,7 +7,73 @@
         "x": 0,
         "y": 0
       },
-      "nodes": [],
+      "nodes": [
+        {
+          "location": {
+            "x": 82.946375932645367,
+            "y": -10
+          },
+          "nodeIndex": "foreign_investors",
+          "nodeLineageTag": "1931680c-7f5f-484d-9024-ee50197da786",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 511.45358264832237,
+            "y": 542.3539875431029
+          },
+          "nodeIndex": "order_flow_stat",
+          "nodeLineageTag": "780ddb4f-cd44-48b3-99a2-066fd7878ab4",
+          "size": {
+            "height": 296,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 10,
+            "y": 471.59988176311504
+          },
+          "nodeIndex": "prices_history",
+          "nodeLineageTag": "1e38263c-4b51-4302-8d46-fce135fc61df",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 578.35456719057424,
+            "y": 44.533303427850683
+          },
+          "nodeIndex": "proprietary_trading",
+          "nodeLineageTag": "fc964e90-1d4e-4ea2-baae-fc5e9e953c94",
+          "size": {
+            "height": 272,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 294.18309294976427,
+            "y": 340.18417117603587
+          },
+          "nodeIndex": "stock_ticker",
+          "nodeLineageTag": "169c3532-3aae-4da1-9f7b-164146ead68a",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
       "name": "All tables",
       "zoomValue": 100,
       "pinKeyFieldsToTop": false,

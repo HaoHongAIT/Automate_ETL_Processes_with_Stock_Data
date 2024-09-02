@@ -1,4 +1,5 @@
 # Web Scraping and Trade Market Analysis
+
 ## ✅ Todo list
 - [x] Extract stock data from cafef.vn (not include news)
 - [x] Transform raw data to available datatype for analysis

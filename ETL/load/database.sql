@@ -1,10 +1,9 @@
--- Ticker
 CREATE TABLE stock_ticker (
-    ticker TEXT PRIMARY KEY,
+    ticker TEXT UNIQUE PRIMARY KEY,
     name TEXT NOT NULL,
     platform TEXT
 );
--- transformed_fpt_1.csv
+
 CREATE TABLE prices_history (
     date DATE NOT NULL,
     close REAL NOT NULL,
@@ -21,7 +20,7 @@ CREATE TABLE prices_history (
     FOREIGN KEY(ticker) REFERENCES stock_ticker(ticker),
     PRIMARY KEY (date, ticker)
 );
--- transformed_fpt_2.csv
+
 CREATE TABLE order_flow_stat(
     date DATE NOT NULL ,
     buy_orders INT NOT NULL,
@@ -35,7 +34,7 @@ CREATE TABLE order_flow_stat(
     FOREIGN KEY (ticker) REFERENCES stock_ticker(ticker),
     PRIMARY KEY (date, ticker)
 );
--- transformed_fpt_3.csv
+
 CREATE TABLE foreign_investors (
     date DATE NOT NULL ,
     net_trading_volume INT NOT NULL,
@@ -50,7 +49,7 @@ CREATE TABLE foreign_investors (
     FOREIGN KEY(ticker) REFERENCES stock_ticker(ticker),
     PRIMARY KEY (date, ticker)
 );
--- transformed_fpt_4.csv
+
 CREATE TABLE proprietary_trading (
     ticker TEXT NOT NULL,
     date DATE NOT NULL,
