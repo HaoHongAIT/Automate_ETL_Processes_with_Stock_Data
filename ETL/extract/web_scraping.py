@@ -20,24 +20,24 @@ def save(lst, ticker, cols, index):
 
 
 
-def get_price_history(self, ticker, time=None) -> list:
+def get_price_history(browser, ticker, time=None) -> list:
     url = f"https://s.cafef.vn/lich-su-giao-dich-{ticker}-1.chn"
-    self.browser.get(url)
+    browser.get(url)
     if time:
-        search_bar = self.browser.find_element(
+        search_bar = browser.find_element(
             By.ID, 'date-inp-disclosure')
-        self.browser.execute_script(
+        browser.execute_script(
             f"arguments[0].value = '{time}' ", search_bar)
-        self.browser.find_element(By.ID, 'owner-find').click()
-        sleep(1)
+        browser.find_element(By.ID, 'owner-find').click()
+    sleep(2)
 
     class_name = ""
     data = []
     while "enable" not in class_name:
-        elements = self.browser.find_elements(
+        elements = browser.find_elements(
             By.CSS_SELECTOR, ".render-table-owner td")
         data += [element.text for element in elements]
-        next_page = self.browser.find_element(By.ID, "paging-right")
+        next_page = browser.find_element(By.ID, "paging-right")
         next_page.click()
         class_name = next_page.get_attribute("class")
         sleep(1)
@@ -48,84 +48,84 @@ def get_price_history(self, ticker, time=None) -> list:
             "open", "high", "low"]
     save(ticker=ticker, lst=data, cols=cols, index=1)
     print("Get Price History Complete")
-    # self.browser.close()
+    # browser.close()
     return data
 
-def get_order_flow_stat(self, ticker, time=None):
+def get_order_flow_stat(browser, ticker, time=None):
     url = f"https://s.cafef.vn/lich-su-giao-dich-{ticker}-2.chn"
-    self.browser.get(url)
+    browser.get(url)
     if time:
-        search_bar = self.browser.find_element(
+        search_bar = browser.find_element(
             By.ID, 'date-inp-disclosure')
-        self.browser.execute_script(
+        browser.execute_script(
             f"arguments[0].value = '{time}' ", search_bar)
-        self.browser.find_element(By.ID, 'owner-find').click()
-        sleep(1)
+        browser.find_element(By.ID, 'owner-find').click()
+    sleep(2)
     class_name = ""
     data = []
     while "enable" not in class_name:
-        elements = self.browser.find_elements(
+        elements = browser.find_elements(
             By.CSS_SELECTOR, ".render-table-owner td")
         data += [element.text for element in elements]
-        next_page = self.browser.find_element(By.ID, "paging-right")
+        next_page = browser.find_element(By.ID, "paging-right")
         next_page.click()
         class_name = next_page.get_attribute("class")
-        sleep(1)
+    sleep(2)
     # SAVE FILE
     cols = ["date", "rate_change", "buy_orders", "buy_volume", "average_buy_order_volume",
             "sell_orders", "sell_volume", "average_sell_order_volume", "net_volume"]
     save(ticker=ticker, lst=data, cols=cols, index=2)
     print("Get Order Flow Statistics Complete")
-    # self.browser.close()
+    # browser.close()
 
-def get_foreign_investors(self, ticker, time=None):
+def get_foreign_investors(browser, ticker, time=None):
     url = f"https://s.cafef.vn/lich-su-giao-dich-{ticker}-3.chn"
-    self.browser.get(url)
+    browser.get(url)
     if time:
-        search_bar = self.browser.find_element(
+        search_bar = browser.find_element(
             By.ID, 'date-inp-disclosure')
-        self.browser.execute_script(
+        browser.execute_script(
             f"arguments[0].value = '{time}' ", search_bar)
-        self.browser.find_element(By.ID, 'owner-find').click()
-        sleep(1)
+        browser.find_element(By.ID, 'owner-find').click()
+    sleep(2)
 
     class_name = ""
     data = []
     while "enable" not in class_name:
-        elements = self.browser.find_elements(
+        elements = browser.find_elements(
             By.CSS_SELECTOR, ".render-table-owner td")
         data += [element.text for element in elements]
-        next_page = self.browser.find_element(By.ID, "paging-right")
+        next_page = browser.find_element(By.ID, "paging-right")
         next_page.click()
         class_name = next_page.get_attribute("class")
-        sleep(1)
+    sleep(2)
     # SAVE FILE
     cols = ["date", "rate_change", "net_trading_volume", "net_trading_value_billion_vnd",
             "buy_volume", "buy_value_billion_vnd", "sell_volume", "sell_value_billion_vnd",
             "remaining_room", "current_ownership"]
     save(ticker=ticker, lst=data, cols=cols, index=3)
     print("Get Foreign Investors Complete")
-    # self.browser.close()
+    # browser.close()
 
 def get_proprietary_trading(browser, ticker, time=None):
     url = f"https://s.cafef.vn/lich-su-giao-dich-{ticker}-4.chn"
     print("Get Proprietary Trading Complete")
     browser.get(url)
     if time:
-        search_bar = self.browser.find_element(
+        search_bar = browser.find_element(
             By.ID, 'date-inp-disclosure')
-        self.browser.execute_script(
+        browser.execute_script(
             f"arguments[0].value = '{time}' ", search_bar)
-        self.browser.find_element(By.ID, 'owner-find').click()
-        sleep(1)
+        browser.find_element(By.ID, 'owner-find').click()
+    sleep(2)
 
     class_name = ""
     data = []
     while "enable" not in class_name:
-        elements = self.browser.find_elements(
+        elements = browser.find_elements(
             By.CSS_SELECTOR, ".render-table-owner td")
         data += [element.text for element in elements]
-        next_page = self.browser.find_element(By.ID, "paging-right")
+        next_page = browser.find_element(By.ID, "paging-right")
         next_page.click()
         class_name = next_page.get_attribute("class")
         sleep(1)
@@ -136,24 +136,38 @@ def get_proprietary_trading(browser, ticker, time=None):
 
     save(ticker=ticker, lst=data, cols=cols, index=4)
     print("Get Proprietry Trading Complete")
-    # self.browser.close()
+    # browser.close()
 
-def run(self, ticker, time_range=None):
+
+def get_data(browser, ticker, time_range=None):
     try:
-        options = Options()
-        options.headless = False
-        options.add_argument("--window-size=1920,1080")
-        service = Service(executable_path='./chromedriver.exe')
-        browser = webdriver.Chrome(service=service, options=options)
-
-        self.get_price_history(ticker=ticker, time=time_range)
-        self.get_order_flow_stat(ticker=ticker, time=time_range)
-        self.get_foreign_investors(ticker=ticker, time=time_range)
-        self.get_proprietary_trading(ticker=ticker, time=time_range)
-        print("Web Scraping Complete")
-
+        get_price_history(browser=browser, ticker=ticker, time=time_range)
+        get_order_flow_stat(browser=browser, ticker=ticker, time=time_range)
+        get_foreign_investors(browser=browser, ticker=ticker, time=time_range)
+        get_proprietary_trading(browser=browser, ticker=ticker, time=time_range)
+        print("Web Scraping Complete "+ ticker)
     except:
         print("Web Scraping Fail")
-
     finally:
-        self.browser.close()
+        browser.close()
+
+
+# def run(self, ticker, time_range=None):
+#     try:
+#         options = Options()
+#         options.headless = False
+#         options.add_argument("--window-size=1920,1080")
+#         service = Service(executable_path='./chromedriver.exe')
+#         browser = webdriver.Chrome(service=service, options=options)
+# 
+#         get_price_history(ticker=ticker, time=time_range)
+#         get_order_flow_stat(ticker=ticker, time=time_range)
+#         get_foreign_investors(ticker=ticker, time=time_range)
+#         get_proprietary_trading(ticker=ticker, time=time_range)
+#         print("Web Scraping Complete")
+# 
+#     except:
+#         print("Web Scraping Fail")
+# 
+#     finally:
+#         browser.close()

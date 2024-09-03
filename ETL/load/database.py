@@ -5,6 +5,7 @@ conn = None
 try:
     # Connect to SQLite database (or create it if it doesn't exist)
     conn = sqlite3.connect('stock_market.db')
+
     # Create a cursor object to interact with the database
     cursor = conn.cursor()
 
