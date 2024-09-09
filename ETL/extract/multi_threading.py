@@ -7,9 +7,9 @@ from selenium.webdriver.chrome.service import Service
 
 
 class MultiThreading:
+    __browsers = []
     def __init__(self, threads):
         self.threads = threads
-        self.browsers = []
 
     def open_multi_browser(self):
         options = Options()
@@ -17,11 +17,14 @@ class MultiThreading:
         options.add_argument("--window-size=1920,1080")
         service = Service(executable_path='./chromedriver.exe')
         try:
-            self.browsers = [webdriver.Chrome(service=service, options=options) for _ in range(self.threads)]
+            browsers = [webdriver.Chrome(service=service, options=options) for _ in range(self.threads)]
             print(f"open {self.threads} browser successfully")
 
         except:
             print("open multi-browser failed")
+
+    def close_multi_browser(self):
+        browsers = []
 
     def load_browser(self, ticker_i, ticker_df):
         time_range = "01/07/2024 - 31/08/2024"
