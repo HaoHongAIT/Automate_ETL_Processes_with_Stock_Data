@@ -10,7 +10,8 @@ def save(lst, ticker, cols, index):
     num_records, num_cols = len(lst), len(cols)
     # Check Null List
     if num_records < num_cols:
-        return "Don't Have Data"
+        print("Don't Have Data")
+        return
 
     folder_path = f"./data/raw/{ticker}"
     if not os.path.exists(folder_path):
@@ -88,12 +89,13 @@ def get_proprietary_trading(browser, ticker, time_range=None):
 
 
 def get_data(browser, ticker_code, time_range=None):
+    ticker = ticker_code.lower()
     try:
-        get_price_history(browser=browser, ticker=ticker_code, time_range=time_range)
-        get_order_flow_stat(browser=browser, ticker=ticker_code, time_range=time_range)
-        get_foreign_investors(browser=browser, ticker=ticker_code, time_range=time_range)
-        get_proprietary_trading(browser=browser, ticker=ticker_code, time_range=time_range)
-        print("Web Scraping Complete >> " + ticker_code.upper())
+        get_price_history(browser=browser, ticker=ticker, time_range=time_range)
+        get_order_flow_stat(browser=browser, ticker=ticker, time_range=time_range)
+        get_foreign_investors(browser=browser, ticker=ticker, time_range=time_range)
+        get_proprietary_trading(browser=browser, ticker=ticker, time_range=time_range)
+        print("Web Scraping Complete >> " + ticker.upper())
 
     except Exception as e:
         print(e)
