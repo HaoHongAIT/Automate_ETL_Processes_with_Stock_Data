@@ -8,9 +8,11 @@ from selenium.webdriver.chrome.service import Service
 
 
 class MultiThreading:
-    def __init__(self, threads):
+    def __init__(self, threads, code_list):
         self.threads = threads
         self.browsers = []
+        self.code_list = code_list
+        self.log = ""
 
     def open_multi_browser(self):
         options = Options()
@@ -19,43 +21,41 @@ class MultiThreading:
         service = Service(executable_path='./chromedriver.exe')
         try:
             self.browsers = [webdriver.Chrome(service=service, options=options) for _ in range(self.threads)]
-            print(f"open {self.threads} browser successfully")
+            print(f"Open {self.threads} browsers successfully")
 
-        except:
-            print("open multi-browser failed")
+        except Exception as e:
+            print(e)
 
     def close_multi_browser(self):
         self.browsers = []
+        print(f"Close {self.threads} browser successfully")
 
-    def load_browser(self, ticker_i, ticker_df, time_range=None):
-        queue = Queue(self.threads) # Control Threads
+    def load_browser(self, ticker_i, time_range=None):
+        queue = Queue(self.threads)  # Control Threads with Queue
         for thread_i in range(self.threads):
             browser_i = self.browsers[thread_i]
-            th = threading.Thread(target=lambda b_i, df, index, q, t: q.put(get_data(b_i, #browser_i
-                                                                                     df['ticker'][index], #stock code
-                                                                                     t)), #time_range
-                                  args=(browser_i, ticker_df, ticker_i + thread_i, queue, time_range))
-
+            # b_i: browser ith, df: dataframe stock code, q: queue, t: time_range
+            th = threading.Thread(target=lambda q, b_i, lst, index, t: q.put(get_data(b_i, lst[index], t)),
+                                  args=(queue, browser_i, self.code_list, ticker_i + thread_i, time_range))
             th.start()
 
         try:
-            sleep(10)
+            sleep(5)
             for _ in range(self.threads):
                 queue.get()
 
         except Exception as e:
             print(e)
 
+    def run(self, time_range=None):
+        num_tickers = len(self.code_list)
+        for ticker_i in range(0, num_tickers, self.threads):
+            self.open_multi_browser()
+            self.load_browser(ticker_i, time_range)
+            self.close_multi_browser()
+
 
 if __name__ == "__main__":
-    ticker_df = pd.read_excel(r'./data/document/code_stock.xlsx')
-    num_tickers = len(ticker_df)
-    time_range = "01/07/2024 - 31/08/2024"
-    crawler = MultiThreading(threads=2)
-
-    for ticker_i in range(0, num_tickers, crawler.threads):
-        crawler.open_multi_browser()
-        crawler.load_browser(ticker_i, ticker_df)
-        crawler.close_multi_browser()
-
-
+    stock_codes = pd.read_excel(r'./data/document/code_stock.xlsx')['ticker'].to_list()
+    crawler = MultiThreading(threads=10, code_list=stock_codes)
+    crawler.run(time_range=None)
