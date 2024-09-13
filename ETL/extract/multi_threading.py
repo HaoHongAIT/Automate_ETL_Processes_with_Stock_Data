@@ -55,7 +55,7 @@ class MultiThreading:
             self.close_multi_browser()
 
 
-if __name__ == "__main__":
-    stock_codes = pd.read_excel(r'./data/document/code_stock.xlsx')['ticker'].to_list()
-    crawler = MultiThreading(threads=10, code_list=stock_codes)
-    crawler.run(time_range=None)
+# if __name__ == "__main__":
+#     stock_codes = pd.read_excel(r'./data/document/code_stock.xlsx')['ticker'].to_list()
+#     crawler = MultiThreading(threads=10, code_list=stock_codes)
+#     crawler.run(time_range=None)
