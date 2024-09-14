@@ -38,6 +38,8 @@ def run(ticker):
     except sqlite3.Error as e:
         print(e)
 
+
+
     finally:
         if conn:
             conn.close()

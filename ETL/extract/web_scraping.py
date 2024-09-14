@@ -34,7 +34,9 @@ def save(lst, ticker, cols, index):
         try:
             sub_lst = [lst[i:i + num_cols] for i in range(0, num_records, num_cols)]
             full_path = os.path.join(folder_path, f"{ticker}_{index}.csv")
-            pd.DataFrame(sub_lst[1:], columns=cols).to_csv(full_path, index=False)
+            df = pd.DataFrame(sub_lst[1:], columns=cols)
+            df['ticker'] = ticker.lower()
+            df.to_csv(full_path, index=False)
 
         except Exception as e:
             log += f"{e}\n"
