@@ -4,7 +4,7 @@ import re
 
 
 def trans_price_history(ticker,index=1):
-    df = pd.read_csv(f"./data/raw/{ticker}/{ticker}_{index}.csv")
+    df = pd.read_csv(f"./data/raw/{ticker}_{index}.csv")
     df['date'] = pd.to_datetime(df['date'], format='%d/%m/%Y')
     df['adjusting_price'] = df['adjusting_price'].replace('--', 'N/A')
     rate = lambda x: re.search(r'\(([-+]?\d*\.?\d+)\s*%', x).group(1) if pd.notnull(x) else x

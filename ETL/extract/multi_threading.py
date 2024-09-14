@@ -1,10 +1,10 @@
 import threading
-from web_scraping import *
-import pandas as pd
 from queue import Queue
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
+from .web_scraping import *
+from ..log import add_to_log
 
 
 class MultiThreading:
@@ -12,7 +12,6 @@ class MultiThreading:
         self.threads = threads
         self.browsers = []
         self.code_list = code_list
-        self.log = ""
 
     def open_multi_browser(self):
         options = Options()
@@ -40,9 +39,8 @@ class MultiThreading:
             th.start()
 
         try:
-            sleep(5)
             for _ in range(self.threads):
-                queue.get()
+                add_to_log(queue.get())
 
         except Exception as e:
             print(e)
@@ -53,9 +51,3 @@ class MultiThreading:
             self.open_multi_browser()
             self.load_browser(ticker_i, time_range)
             self.close_multi_browser()
-
-
-# if __name__ == "__main__":
-#     stock_codes = pd.read_excel(r'./data/document/code_stock.xlsx')['ticker'].to_list()
-#     crawler = MultiThreading(threads=10, code_list=stock_codes)
-#     crawler.run(time_range=None)
