@@ -1,6 +1,6 @@
 from ETL.extract.multi_threading import MultiThreading
 from ETL.transform import *
-from ETL.load import load
+from ETL.load.load import Load
 from ETL import *
 import pandas as pd
 from ETL.transform.transform import Transform
@@ -14,8 +14,10 @@ from ETL.transform.transform import Transform
 transform1 = Transform()
 transform1.run()
 
-#     ## Load > Available Data for Analysis
-#     load.run(ticker=ticker)
+# Load > Available Data for Analysis
+load1 = Load()
+load1.run()
+
 
 
 # import glob
@@ -26,5 +28,6 @@ transform1.run()
 #     df['ticker'] = str(re.search(r'\\[\d\-]+\\([a-zA-Z0-9]+)_\d+\.csv$', file_path).group(1))
 #     df.to_csv(file_path, index=False)
 
-
+# df = pd.read_csv('./data/transformed/2024-09-14/prices_history.csv')
+# print(df.max())
 

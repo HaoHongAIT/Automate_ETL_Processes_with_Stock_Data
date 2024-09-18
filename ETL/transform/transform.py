@@ -22,7 +22,6 @@ def obj_to_float(values):
     return lst
 
 
-
 class Transform:
     def __init__(self):
         self.save_folder = f".\\data\\transformed\\2024-09-14"
@@ -35,7 +34,7 @@ class Transform:
         path = glob.glob(".\\data\\raw\\2024-09-14\\*.csv")
         for file_path in path:
             tmp = pd.read_csv(file_path)
-            if "_1." in file_path: df1 = df1._append(tmp, ignore_index=True)
+            if   "_1." in file_path: df1 = df1._append(tmp, ignore_index=True)
 
             elif "_2." in file_path: df2 = df2._append(tmp, ignore_index=True)
 
@@ -61,13 +60,14 @@ class Transform:
         df['block_trade_value'] = obj_to_float(df["block_trade_value"].tolist())
         df['order_matching_value'] = obj_to_float(df['order_matching_value'].tolist())
         # df.to_csv(f"./data/transformed/{TODAY}/transformed_trans_price_history.csv", index=False)
-        df.to_csv(f"{self.save_folder}\\price_history.csv", index=False)
+        df.drop_duplicates(inplace=True)
+        df.to_csv(f"{self.save_folder}\\prices_history.csv", index=False)
         print(df.dtypes)
 
 
     def trans_order_flow_stat(self, df):
         df['date'] = pd.to_datetime(df['date'], format='%d/%m/%Y')
-        
+
         df['buy_orders'] = obj_to_int(df["buy_orders"].tolist())
         df['buy_volume'] = obj_to_int(df["buy_volume"].tolist())
         df['average_sell_order_volume'] = obj_to_int(df["average_sell_order_volume"].tolist())
@@ -78,6 +78,7 @@ class Transform:
         df['average_buy_order_volume'] = obj_to_float(df['average_buy_order_volume'])
         df.drop(columns=['rate_change'], inplace=True)
         # df.to_csv(f"./data/transformed/{TODAY}/transformed_trans_order_flow_stat.csv",  index=False)
+        df.drop_duplicates(inplace=True)
         df.to_csv(f"{self.save_folder}\\order_flow_stat.csv", index=False)
         print(df.dtypes)
 
@@ -93,6 +94,7 @@ class Transform:
         df['current_ownership'] = obj_to_float(df['current_ownership'].tolist())
         df.drop(columns=['rate_change'], inplace=True)
         # df.to_csv(f"./data/transformed/{TODAY}/transformed_trans_foreign_investors.csv",  index=False)
+        df.drop_duplicates(inplace=True)
         df.to_csv(f"{self.save_folder}\\foreign_investors.csv", index=False)
         print(df.dtypes)
 
@@ -103,10 +105,10 @@ class Transform:
         df["net_trading_volume"] = obj_to_int(df["net_trading_volume"].tolist())
         # df.to_csv(f"./data/transformed/{TODAY}/transformed_trans_proprietary_trading.csv",  index=False)
         df.to_csv(f"{self.save_folder}\\proprietary_trading.csv", index=False)
+        df.drop_duplicates(inplace=True)
         print(df.dtypes)
 
     def run(self):
-
         df1, df2, df3, df4 = self.combine_csv()
         self.trans_price_history(df1)
         self.trans_order_flow_stat(df2)
