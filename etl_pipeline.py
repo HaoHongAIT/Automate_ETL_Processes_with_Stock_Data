@@ -11,17 +11,20 @@ TIME ="2024-09-14"
 # time_range = f'01/01/2024 - {TIME}'
 # stock_codes = pd.read_excel(r'./data/document/code_stock.xlsx')['ticker'].to_list()[0:200]
 
+# stock_codes = pd.read_csv(r'./data/transformed/2024-09-14/prices_history.csv')
+import csv
+
 # INGESTION
 # crawler = MultiThreading(threads=10, code_list=stock_codes)
 # crawler.run(time_range=time_range)
 
-# TRANSFORM > Transformed Data
+# # TRANSFORM > Transformed Data
 transform_pipeline = Transform(time=TIME)
 transform_pipeline.run()
-
+#
 # Load > Available Data for Analysis
 load2db = Load()
-load2db.run()
+load2db.run(init=False)
 
 
 
