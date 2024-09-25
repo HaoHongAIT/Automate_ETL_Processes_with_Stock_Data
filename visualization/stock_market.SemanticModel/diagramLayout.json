@@ -10,72 +10,137 @@
       "nodes": [
         {
           "location": {
-            "x": 291.38423749660973,
-            "y": 1.2570207430874412
+            "x": 82.946375932645367,
+            "y": -10
           },
-          "nodeIndex": "foreign_investors",
-          "nodeLineageTag": "1931680c-7f5f-484d-9024-ee50197da786",
+          "nodeIndex": "foreign_investors (2)",
+          "nodeLineageTag": "449f09be-aab7-49ad-8ef3-d04b057ba076",
           "size": {
             "height": 300,
             "width": 234
           },
-          "zIndex": 1
+          "zIndex": 0
         },
         {
           "location": {
-            "x": 872.21676227906687,
-            "y": 306.87861778808815
+            "x": 511.45358264832237,
+            "y": 542.3539875431029
           },
-          "nodeIndex": "order_flow_stat",
-          "nodeLineageTag": "780ddb4f-cd44-48b3-99a2-066fd7878ab4",
+          "nodeIndex": "order_flow_stat (2)",
+          "nodeLineageTag": "f25e29e0-54ce-48b2-9034-d99445c63f70",
           "size": {
             "height": 296,
             "width": 234
           },
-          "zIndex": 2
+          "zIndex": 0
         },
         {
           "location": {
-            "x": 30.441782543309046,
-            "y": 183.84989880832845
+            "x": 10,
+            "y": 471.59988176311504
           },
-          "nodeIndex": "prices_history",
-          "nodeLineageTag": "1e38263c-4b51-4302-8d46-fce135fc61df",
+          "nodeIndex": "prices_history (2)",
+          "nodeLineageTag": "3d0dcaf6-6f7a-40d3-9e5f-f63d27155cd3",
           "size": {
             "height": 300,
             "width": 234
           },
-          "zIndex": 3
+          "zIndex": 0
         },
         {
           "location": {
-            "x": 826.84349650496358,
-            "y": 6.316580600786228
+            "x": 578.35456719057424,
+            "y": 44.533303427850683
           },
-          "nodeIndex": "proprietary_trading",
-          "nodeLineageTag": "fc964e90-1d4e-4ea2-baae-fc5e9e953c94",
+          "nodeIndex": "proprietary_trading (2)",
+          "nodeLineageTag": "c6362cfc-a013-4bb9-b825-d6b456cefea5",
           "size": {
             "height": 272,
             "width": 234
           },
-          "zIndex": 4
+          "zIndex": 0
         },
         {
           "location": {
-            "x": 561.92851122738966,
-            "y": 200.65486869332966
+            "x": 294.18309294976427,
+            "y": 340.18417117603587
           },
-          "nodeIndex": "stock_ticker",
-          "nodeLineageTag": "169c3532-3aae-4da1-9f7b-164146ead68a",
+          "nodeIndex": "stock_ticker (2)",
+          "nodeLineageTag": "39d25c60-b125-43bb-a9d7-f0871a0e9fef",
           "size": {
             "height": 152,
             "width": 234
           },
-          "zIndex": 5
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1108.2272686429544,
+            "y": 676.46870504711683
+          },
+          "nodeIndex": "foreign_investors",
+          "nodeLineageTag": "c8e8c352-3fa4-4a93-a3bf-7a64faf1f7ff",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 852.35456719057424,
+            "y": 0
+          },
+          "nodeIndex": "order_flow_stat",
+          "nodeLineageTag": "226f2d95-42ae-47bd-8a43-1abc7338ce3b",
+          "size": {
+            "height": 296,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1660.3356038770876,
+            "y": 283.3852342726866
+          },
+          "nodeIndex": "prices_history",
+          "nodeLineageTag": "86049276-1773-475a-adf3-5e79fd55bfa7",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1356.4027566959469,
+            "y": 803.21920489258662
+          },
+          "nodeIndex": "proprietary_trading",
+          "nodeLineageTag": "3f5e3536-5cae-4476-aea0-d916e1ac1049",
+          "size": {
+            "height": 272,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1248.7260014307944,
+            "y": 473.60960244629331
+          },
+          "nodeIndex": "stock_ticker",
+          "nodeLineageTag": "f49027ae-905c-4af3-a42d-1a586ae3ac56",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 0
         }
       ],
       "name": "All tables",
-      "zoomValue": 79.553182037699756,
+      "zoomValue": 76.196693148471979,
       "pinKeyFieldsToTop": false,
       "showExtraHeaderInfo": false,
       "hideKeyFieldsWhenCollapsed": false,

@@ -1,6 +1,6 @@
-import mysql.connector
-import pandas as pd
-import numpy as np
+import sqlite3
+
+import sqlite3
 
 
 def insert(cursor, header: list, table_name: str, stock_codes: list):
@@ -15,8 +15,8 @@ def insert(cursor, header: list, table_name: str, stock_codes: list):
     try:
         for row in stock_codes:
             cursor.execute(insert_query, row)
-
-    except mysql.connector.Error as e:
+        print("Load data into tables successfully")
+    except sqlite3.Error as e:
         raise e
 
 
