@@ -1,11 +1,11 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
   "metadata": {
-    "type": "SemanticModel",
-    "displayName": "vietnam_stock"
+    "type": "Report",
+    "displayName": "stock_market"
   },
   "config": {
     "version": "2.0",
-    "logicalId": "a7238f08-4acc-413c-ad96-031afe95d230"
+    "logicalId": "88f55348-79c5-4932-a8e6-c5a808b8fc64"
   }
 }

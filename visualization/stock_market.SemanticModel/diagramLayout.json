@@ -10,8 +10,8 @@
       "nodes": [
         {
           "location": {
-            "x": 82.946375932645367,
-            "y": -10
+            "x": 291.38423749660973,
+            "y": 1.2570207430874412
           },
           "nodeIndex": "foreign_investors",
           "nodeLineageTag": "1931680c-7f5f-484d-9024-ee50197da786",
@@ -19,12 +19,12 @@
             "height": 300,
             "width": 234
           },
-          "zIndex": 0
+          "zIndex": 1
         },
         {
           "location": {
-            "x": 511.45358264832237,
-            "y": 542.3539875431029
+            "x": 872.21676227906687,
+            "y": 306.87861778808815
           },
           "nodeIndex": "order_flow_stat",
           "nodeLineageTag": "780ddb4f-cd44-48b3-99a2-066fd7878ab4",
@@ -32,12 +32,12 @@
             "height": 296,
             "width": 234
           },
-          "zIndex": 0
+          "zIndex": 2
         },
         {
           "location": {
-            "x": 10,
-            "y": 471.59988176311504
+            "x": 30.441782543309046,
+            "y": 183.84989880832845
           },
           "nodeIndex": "prices_history",
           "nodeLineageTag": "1e38263c-4b51-4302-8d46-fce135fc61df",
@@ -45,12 +45,12 @@
             "height": 300,
             "width": 234
           },
-          "zIndex": 0
+          "zIndex": 3
         },
         {
           "location": {
-            "x": 578.35456719057424,
-            "y": 44.533303427850683
+            "x": 826.84349650496358,
+            "y": 6.316580600786228
           },
           "nodeIndex": "proprietary_trading",
           "nodeLineageTag": "fc964e90-1d4e-4ea2-baae-fc5e9e953c94",
@@ -58,12 +58,12 @@
             "height": 272,
             "width": 234
           },
-          "zIndex": 0
+          "zIndex": 4
         },
         {
           "location": {
-            "x": 294.18309294976427,
-            "y": 340.18417117603587
+            "x": 561.92851122738966,
+            "y": 200.65486869332966
           },
           "nodeIndex": "stock_ticker",
           "nodeLineageTag": "169c3532-3aae-4da1-9f7b-164146ead68a",
@@ -71,11 +71,11 @@
             "height": 152,
             "width": 234
           },
-          "zIndex": 0
+          "zIndex": 5
         }
       ],
       "name": "All tables",
-      "zoomValue": 100,
+      "zoomValue": 79.553182037699756,
       "pinKeyFieldsToTop": false,
       "showExtraHeaderInfo": false,
       "hideKeyFieldsWhenCollapsed": false,

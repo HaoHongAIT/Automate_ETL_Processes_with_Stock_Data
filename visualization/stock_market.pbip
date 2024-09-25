@@ -3,7 +3,7 @@
   "artifacts": [
     {
       "report": {
-        "path": "vietnam_stock.Report"
+        "path": "stock_market.Report"
       }
     }
   ],
