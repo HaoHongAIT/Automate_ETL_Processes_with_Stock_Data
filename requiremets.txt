@@ -1,3 +1,4 @@
+apache-airflow==2.10.1
 selenium==4.23.1
 pandas==2.2.2
 numpy==2.0.1
@@ -8,6 +9,4 @@ streamlit==1.37.1
 scikit-learn==1.5.1
 xgboost==2.1.1
 openpyxl==3.1.5
-sqlalchemy==2.0.32
 jupyter
-apache-airflow==2.10.1
