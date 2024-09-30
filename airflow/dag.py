@@ -5,6 +5,10 @@ from airflow.operators.python import PythonOperator
 
 from email import email
 
+# Run this comment first:
+# airflow db init
+# airflow webserver -p 8080 (require WLS or Docker)
+
 # ssl._create_default_https_context = ssl._create_unverified_context
 
 dag = DAG('etl_dag',
@@ -37,3 +41,4 @@ email_operator = PythonOperator(task_id='email_operator',
 
 extract_task >> transform_task >> load_task
 # extract_task >> [transform_task, load_task]
+
