@@ -1,7 +1,0 @@
-apache-airflow==2.10.1
-selenium==4.23.1
-pandas==2.2.2
-numpy==2.0.1
-scikit-learn==1.5.1
-openpyxl==3.1.5
-jupyter
