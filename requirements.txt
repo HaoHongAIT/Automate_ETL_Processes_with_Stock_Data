@@ -1,6 +1,5 @@
-apache-airflow==2.8.1
-selenium==4.23.1
-pandas==2.2.2
-numpy==2.0.1
-openpyxl==3.1.5
-jupyter
+apache-airflow
+selenium
+pandas
+numpy
+openpyxl
