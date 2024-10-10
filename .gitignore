@@ -4,3 +4,4 @@ chromedriver.exe
 /.idea/
 *.pyc
 */__pycache__
+/logs
